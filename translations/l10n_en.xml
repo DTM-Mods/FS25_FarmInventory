@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<l10n>
+    <texts>
+        <text name="ui_sptTabLabel" text="INVENTORY" />
+        <text name="ui_sptNoGoods" text="No goods stored in your silos, productions or animal pens." />
+        <text name="ui_sptSilo" text="SILO" />
+        <text name="ui_sptBunkerSilo" text="BUNKER SILO" />
+        <text name="ui_sptProduction" text="PRODUCTION" />
+        <text name="ui_sptAnimals" text="ANIMALS" />
+        <text name="ui_sptInput" text="(input)" />
+    </texts>
+</l10n>
