@@ -6,7 +6,5 @@
         <text name="ui_sptSilo" text="SILO" />
         <text name="ui_sptBunkerSilo" text="BUNKER SILO" />
         <text name="ui_sptProduction" text="PRODUCTION" />
-        <text name="ui_sptAnimals" text="ANIMALS" />
-        <text name="ui_sptInput" text="(input)" />
-    </texts>
+        <text name="ui_sptAnimals" text="ANIMALS" />    </texts>
 </l10n>

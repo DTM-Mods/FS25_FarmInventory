@@ -45,7 +45,7 @@ FarmInventory.MIN_LEVEL = 0.5
 
 -- The farm's storage locations in list order: silos (silo extensions added into the silo they are
 -- connected to), bunker silos, production points, animal pens. Each location is
--- {kind, name, levels = fillTypeIndex -> liters, inputs = fillTypeIndex -> true (production inputs)}
+-- {kind, name, levels = fillTypeIndex -> liters}
 function FarmInventory.getOwnLocations(farmId)
     local placeableSystem = g_currentMission ~= nil and g_currentMission.placeableSystem or nil
     if placeableSystem == nil or farmId == nil then
@@ -53,7 +53,7 @@ function FarmInventory.getOwnLocations(farmId)
     end
 
     local function newLocation(kind, placeable)
-        return {kind = kind, name = placeable.getName ~= nil and placeable:getName() or "", levels = {}, inputs = {}}
+        return {kind = kind, name = placeable.getName ~= nil and placeable:getName() or "", levels = {}}
     end
     local function addLevel(location, fillTypeIndex, level)
         if fillTypeIndex ~= nil and level ~= nil and level > 0 then
@@ -101,11 +101,15 @@ function FarmInventory.getOwnLocations(farmId)
             end
             local productionPoint = placeable.spec_productionPoint ~= nil and placeable.spec_productionPoint.productionPoint or nil
             if productionPoint ~= nil then
+                -- only the goods it makes: inputs can't be taken back out (all goods if the output list is missing)
                 local location = newLocation("production", placeable)
-                addStorage(location, productionPoint.storage)
-                for fillTypeIndex in pairs(productionPoint.inputFillTypeIds or {}) do
-                    if not (productionPoint.outputFillTypeIds or {})[fillTypeIndex] then
-                        location.inputs[fillTypeIndex] = true
+                local storage = productionPoint.storage
+                local outputs = productionPoint.outputFillTypeIds
+                if outputs == nil then
+                    addStorage(location, storage)
+                elseif storage ~= nil and storage.fillLevels ~= nil then
+                    for fillTypeIndex in pairs(outputs) do
+                        addLevel(location, fillTypeIndex, storage.fillLevels[fillTypeIndex])
                     end
                 end
                 table.insert(productions, location)
@@ -585,25 +589,6 @@ local function findStorageText(cell, title)
     return found
 end
 
--- The cell's text element showing the commodity name (the game sets it to the fill type title)
-local function findNameText(cell, title)
-    local found = nil
-    local function scan(element)
-        for _, child in ipairs(element.elements or {}) do
-            if found ~= nil then
-                return
-            end
-            if child.setText ~= nil and child.text == title then
-                found = child
-                return
-            end
-            scan(child)
-        end
-    end
-    scan(cell)
-    return found
-end
-
 function FarmInventory.populateCellForItemInSection(frame, superFunc, list, section, index, cell, ...)
     local result = superFunc(frame, list, section, index, cell, ...)
     if not isOwnProductList(frame, list) or cell == nil then
@@ -622,17 +607,9 @@ function FarmInventory.populateCellForItemInSection(frame, superFunc, list, sect
         return result
     end
     local fillType = g_fillTypeManager:getFillTypeByIndex(fillTypeIndex)
-    local title = fillType ~= nil and fillType.title or nil
-    local storageText = findStorageText(cell, title)
+    local storageText = findStorageText(cell, fillType ~= nil and fillType.title or nil)
     if storageText ~= nil then
         storageText:setText(g_i18n:formatVolume(location.levels[fillTypeIndex] or 0, 0))
-    end
-    -- production inputs: "Wheat (input)" in the name text the game just filled in
-    if location.inputs[fillTypeIndex] and title ~= nil then
-        local nameText = findNameText(cell, title)
-        if nameText ~= nil then
-            nameText:setText(string.format("%s %s", title, FarmInventory.texts.input))
-        end
     end
     return result
 end
@@ -681,7 +658,6 @@ function FarmInventory:loadMap()
     FarmInventory.texts = {
         label = g_i18n:getText("ui_sptTabLabel"),
         noGoods = g_i18n:getText("ui_sptNoGoods"),
-        input = g_i18n:getText("ui_sptInput"),
         kinds = {
             silo = g_i18n:getText("ui_sptSilo"),
             bunkerSilo = g_i18n:getText("ui_sptBunkerSilo"),

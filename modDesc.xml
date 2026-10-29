@@ -8,7 +8,7 @@
     </title>
 
     <description>
-        <en><![CDATA[Adds an "Inventory" tab to the Prices menu that lists the goods your farm has stored, grouped by where they are kept: each silo (silo extensions included), bunker silo, production and animal pen gets its own heading, with how much of each good is there. Full market information stays (stations, prices, price history).
+        <en><![CDATA[Adds an "Inventory" tab to the Prices menu that lists the goods your farm has stored, grouped by where they are kept: each silo (silo extensions included), bunker silo, production (the goods it makes) and animal pen gets its own heading, with how much of each good is there. Full market information stays (stations, prices, price history).
 
 When you fill up at a silo, the fill type list only shows goods that are actually in stock.]]></en>
     </description>

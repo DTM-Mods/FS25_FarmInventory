@@ -40,8 +40,9 @@ Renamed from SiloPricesTab to MySiloPricesTab on 2026-10-19, then to FarmInvento
 - (v0.5.0.0) Own stock = `FarmInventory.getOwnLocations(farmId)`: one location per placeable owned by the farm, in
   order silos (`spec_silo.storages`), bunker silos (`spec_bunkerSilo.bunkerSilo.fillLevel`; fill type = inputFillType,
   or outputFillType when state is CLOSED/FERMENTED/DRAIN, as in BunkerSilo:update), productions
-  (`spec_productionPoint.productionPoint.storage`; `inputFillTypeIds` not in `outputFillTypeIds` get "(input)",
-  those field names are unverified: ProductionPoint:load is stripped), animal pens (`spec_husbandry.storage`).
+  (`spec_productionPoint.productionPoint.storage`, ONLY the goods in `outputFillTypeIds`: the user doesn't want inputs,
+  they can't be taken back out; if that field is nil every good shows. Field name unverified: ProductionPoint:load is
+  stripped), animal pens (`spec_husbandry.storage`).
   A silo extension (`spec_siloExtension.storage`) is added into the silo whose loadingStation/unloadingStation is in
   its `storage.loadingStations` / `unloadingStations` (keyed by station, Storage.lua:527); unconnected ones show as
   their own SILO. Headings "SILO  |  <placeable:getName()>"; empty locations are left out.
