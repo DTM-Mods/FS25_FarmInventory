@@ -43,6 +43,13 @@ Renamed from SiloPricesTab to MySiloPricesTab on 2026-10-19, then to FarmInvento
   (`spec_productionPoint.productionPoint.storage`, ONLY the goods in `outputFillTypeIds`: the user doesn't want inputs,
   they can't be taken back out; if that field is nil every good shows. Field name unverified: ProductionPoint:load is
   stripped), animal pens (`spec_husbandry.storage`).
+- (v0.6.0.0) FEEDING ROBOT sections come right after the silos (dry, then liquid): one per owned placeable with
+  `spec_husbandryFeedingRobot`, listing EVERY bin, empty ones too, as "stored / capacity" with the price texts blanked.
+  Bins = `feedingRobot.unloadingSpots[i]` (.fillLevel, .capacity; fill type field unverified, FeedingRobot.lua is not in
+  gameSource.zip: tries .fillTypes, .fillTypeIndex/.fillType, robot.fillTypeToUnloadingSpot; logs the spot's fields once
+  with [FarmInventory] if none). FS25_PigBarnWithRobot (Fennell) keeps its hoppers in
+  `placeable["spec_FS25_PigBarnWithRobot.pigFeedRobot"].groups` (.hopper.marker, .fillLevel, .capacity); its robot spots only copy
+  them for the look, so that spec is read instead.
   A silo extension (`spec_siloExtension.storage`) is added into the silo whose loadingStation/unloadingStation is in
   its `storage.loadingStations` / `unloadingStations` (keyed by station, Storage.lua:527); unconnected ones show as
   their own SILO. Headings "SILO  |  <placeable:getName()>"; empty locations are left out.

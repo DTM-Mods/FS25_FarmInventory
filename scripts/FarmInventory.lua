@@ -44,8 +44,98 @@ end
 FarmInventory.MIN_LEVEL = 0.5
 
 -- The farm's storage locations in list order: silos (silo extensions added into the silo they are
--- connected to), bunker silos, production points, animal pens. Each location is
--- {kind, name, levels = fillTypeIndex -> liters}
+-- connected to), feeding robots, bunker silos, production points, animal pens. Each location is
+FarmInventory.LIQUID_NAMES = {"MILK", "WATER", "DIESEL", "HERBICIDE", "LIQUIDFERTILIZER", "LIQUIDLIME", "LIQUIDMANURE",
+    "DIGESTATE", "DEF", "METHANE", "OIL", "SYRUP", "JUICE", "WHEY", "CREAM", "VINEGAR", "BRINE", "SLURRY", "ETHANOL"}
+
+-- true for milk, water, fuels, sprays ...: the game's LIQUID category if the map has one, else by fill type name
+function FarmInventory.isLiquid(fillTypeIndex)
+    local manager = g_fillTypeManager
+    local categories = manager ~= nil and manager.categoryNameToFillTypes or nil
+    if categories ~= nil and categories.LIQUID ~= nil and categories.LIQUID[fillTypeIndex] then
+        return true
+    end
+    local name = manager ~= nil and manager:getFillTypeNameByIndex(fillTypeIndex) or nil
+    if name == nil then
+        return false
+    end
+    for _, part in ipairs(FarmInventory.LIQUID_NAMES) do
+        if string.find(name, part, 1, true) ~= nil then
+            return true
+        end
+    end
+    return false
+end
+
+-- The fill type a feeding robot bin takes (the field names of the game's FeedingRobot class are unverified,
+-- FeedingRobot.lua is not in gameSource.zip, so several are tried)
+local function getSpotFillType(robot, spotIndex, spot)
+    local fillTypes = spot.fillTypes
+    if type(fillTypes) == "table" then
+        if type(fillTypes[1]) == "number" then
+            return fillTypes[1]
+        end
+        local lowest = nil
+        for fillTypeIndex, value in pairs(fillTypes) do
+            local index = type(value) == "number" and value or fillTypeIndex
+            if type(index) == "number" and (lowest == nil or index < lowest) then
+                lowest = index
+            end
+        end
+        if lowest ~= nil then
+            return lowest
+        end
+    end
+    for _, name in ipairs({"fillTypeIndex", "fillType"}) do
+        if type(spot[name]) == "number" then
+            return spot[name]
+        end
+    end
+    for fillTypeIndex, target in pairs(robot.fillTypeToUnloadingSpot or {}) do
+        if target == spot or target == spotIndex then
+            return fillTypeIndex
+        end
+    end
+    return nil
+end
+
+-- One row per bin of the placeable's feeding robot, empty bins included: {fillTypeIndex, level, capacity}.
+-- FS25_PigBarnWithRobot keeps its hoppers in its own spec (the robot's bins there only copy them for the look).
+function FarmInventory.getFeedingRobotRows(placeable)
+    local rows = {}
+    local pigSpec = placeable["spec_FS25_PigBarnWithRobot.pigFeedRobot"]
+    if pigSpec ~= nil and type(pigSpec.groups) == "table" then
+        for _, group in ipairs(pigSpec.groups) do
+            local hopper = group.hopper or {}
+            local fillTypeIndex = hopper.marker ~= nil and g_fillTypeManager:getFillTypeIndexByName(hopper.marker) or group.foodFillType
+            if fillTypeIndex ~= nil then
+                table.insert(rows, {fillTypeIndex = fillTypeIndex, level = group.fillLevel or 0, capacity = group.capacity or 0})
+            end
+        end
+        return rows
+    end
+
+    local robot = placeable.spec_husbandryFeedingRobot ~= nil and placeable.spec_husbandryFeedingRobot.feedingRobot or nil
+    if robot == nil or type(robot.unloadingSpots) ~= "table" then
+        return rows
+    end
+    for spotIndex, spot in ipairs(robot.unloadingSpots) do
+        local fillTypeIndex = getSpotFillType(robot, spotIndex, spot)
+        if fillTypeIndex ~= nil then
+            table.insert(rows, {fillTypeIndex = fillTypeIndex, level = spot.fillLevel or 0, capacity = spot.capacity or 0})
+        elseif not FarmInventory.spotDumped then
+            FarmInventory.spotDumped = true
+            local keys = {}
+            for key, value in pairs(spot) do
+                table.insert(keys, string.format("%s=%s", tostring(key), type(value)))
+            end
+            print(string.format("%s feeding robot bin without a known fill type, fields: %s", FarmInventory.TAG, table.concat(keys, ", ")))
+        end
+    end
+    return rows
+end
+
+-- {kind, name, levels = fillTypeIndex -> liters}; feeding robots also have rows (see getFeedingRobotRows)
 function FarmInventory.getOwnLocations(farmId)
     local placeableSystem = g_currentMission ~= nil and g_currentMission.placeableSystem or nil
     if placeableSystem == nil or farmId == nil then
@@ -68,7 +158,7 @@ function FarmInventory.getOwnLocations(farmId)
         end
     end
 
-    local silos, bunkers, productions, animals = {}, {}, {}, {}
+    local silos, robots, bunkers, productions, animals = {}, {}, {}, {}, {}
     local siloByStation = {} -- a silo's loading/unloading station -> its location
     local extensions = {}
     for _, placeable in ipairs(placeableSystem.placeables) do
@@ -114,6 +204,17 @@ function FarmInventory.getOwnLocations(farmId)
                 end
                 table.insert(productions, location)
             end
+            if placeable.spec_husbandryFeedingRobot ~= nil then
+                local rows = FarmInventory.getFeedingRobotRows(placeable)
+                if #rows > 0 then
+                    local location = newLocation("feedingRobot", placeable)
+                    location.rows = rows
+                    for _, row in ipairs(rows) do
+                        addLevel(location, row.fillTypeIndex, row.level)
+                    end
+                    table.insert(robots, location)
+                end
+            end
             if placeable.spec_husbandry ~= nil and placeable.spec_husbandry.storage ~= nil then
                 local location = newLocation("animals", placeable)
                 addStorage(location, placeable.spec_husbandry.storage)
@@ -138,8 +239,18 @@ function FarmInventory.getOwnLocations(farmId)
         addStorage(location, storage)
     end
 
+    -- liquid storages (every good in them is a liquid) go right below the other silos
+    local drySilos, liquidSilos = {}, {}
+    for _, location in ipairs(silos) do
+        local isLiquid = next(location.levels) ~= nil
+        for fillTypeIndex in pairs(location.levels) do
+            isLiquid = isLiquid and FarmInventory.isLiquid(fillTypeIndex)
+        end
+        table.insert(isLiquid and liquidSilos or drySilos, location)
+    end
+
     local locations = {}
-    for _, group in ipairs({silos, bunkers, productions, animals}) do
+    for _, group in ipairs({drySilos, liquidSilos, robots, bunkers, productions, animals}) do
         for _, location in ipairs(group) do
             table.insert(locations, location)
         end
@@ -228,12 +339,27 @@ function FarmInventory.applyFilter(frame)
     end
 
     -- one section per storage location with a heading "SILO | <name>"; goods keep the game's list order, and a good
-    -- kept in two places shows under both, each with its own amount. Locations with nothing stored are left out.
+    -- kept in two places shows under both, each with its own amount. Locations with nothing stored are left out,
+    -- except feeding robots, which list every bin.
     local minLevel = FarmInventory.MIN_LEVEL
     local filtered, counts, locations, total = {}, {}, {}, 0
     for _, location in ipairs(FarmInventory.getOwnLocations(getPlayerFarmId(frame))) do
         local entries = {}
-        for _, gameEntries in ipairs(full) do
+        if location.rows ~= nil then
+            -- feeding robot: every bin in bin order, empty ones too; a feed the price list doesn't have uses its fill type
+            for _, row in ipairs(location.rows) do
+                local entry = nil
+                for _, gameEntries in ipairs(full) do
+                    for _, gameEntry in ipairs(gameEntries) do
+                        if entry == nil and getEntryFillTypeIndex(gameEntry) == row.fillTypeIndex then
+                            entry = gameEntry
+                        end
+                    end
+                end
+                table.insert(entries, entry or g_fillTypeManager:getFillTypeByIndex(row.fillTypeIndex))
+            end
+        end
+        for _, gameEntries in ipairs(location.rows == nil and full or {}) do
             for _, entry in ipairs(gameEntries) do
                 local fillTypeIndex = getEntryFillTypeIndex(entry)
                 if fillTypeIndex ~= nil and (location.levels[fillTypeIndex] or 0) >= minLevel then
@@ -589,10 +715,28 @@ local function findStorageText(cell, title)
     return found
 end
 
+-- Feeding robot rows show no prices: every text but the name and the amount is cleared
+local function clearPriceTexts(cell, keep)
+    for _, child in ipairs(cell.elements or {}) do
+        if child.setText ~= nil and type(child.text) == "string" and not keep[child] then
+            child:setText("")
+        end
+        clearPriceTexts(child, keep)
+    end
+end
+
 function FarmInventory.populateCellForItemInSection(frame, superFunc, list, section, index, cell, ...)
-    local result = superFunc(frame, list, section, index, cell, ...)
     if not isOwnProductList(frame, list) or cell == nil then
-        return result
+        return superFunc(frame, list, section, index, cell, ...)
+    end
+    local location = frame.sptLocations[section]
+    local result = nil
+    if location ~= nil and location.rows ~= nil then
+        -- a feed the game never prices may trip its price code; the amount is written anyway
+        local ok, value = pcall(superFunc, frame, list, section, index, cell, ...)
+        result = ok and value or nil
+    else
+        result = superFunc(frame, list, section, index, cell, ...)
     end
 
     local entries = frame.fillTypes[section]
@@ -602,13 +746,31 @@ function FarmInventory.populateCellForItemInSection(frame, superFunc, list, sect
         return result
     end
 
-    local location = frame.sptLocations[section]
     if location == nil then
         return result
     end
     local fillType = g_fillTypeManager:getFillTypeByIndex(fillTypeIndex)
-    local storageText = findStorageText(cell, fillType ~= nil and fillType.title or nil)
-    if storageText ~= nil then
+    local title = fillType ~= nil and fillType.title or nil
+    local storageText = findStorageText(cell, title)
+    local row = location.rows ~= nil and location.rows[index] or nil
+    if row ~= nil then
+        -- "107,103 / 120,000 l", no prices
+        local keep = {}
+        if storageText ~= nil then
+            storageText:setText(string.format("%s / %s", g_i18n:formatNumber(row.level, 0), g_i18n:formatVolume(row.capacity, 0)))
+            keep[storageText] = true
+        end
+        local function keepName(element)
+            for _, child in ipairs(element.elements or {}) do
+                if child.text == title then
+                    keep[child] = true
+                end
+                keepName(child)
+            end
+        end
+        keepName(cell)
+        clearPriceTexts(cell, keep)
+    elseif storageText ~= nil then
         storageText:setText(g_i18n:formatVolume(location.levels[fillTypeIndex] or 0, 0))
     end
     return result
@@ -661,6 +823,7 @@ function FarmInventory:loadMap()
         kinds = {
             silo = g_i18n:getText("ui_sptSilo"),
             bunkerSilo = g_i18n:getText("ui_sptBunkerSilo"),
+            feedingRobot = g_i18n:getText("ui_sptFeedingRobot"),
             production = g_i18n:getText("ui_sptProduction"),
             animals = g_i18n:getText("ui_sptAnimals")
         }

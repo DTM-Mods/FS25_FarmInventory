@@ -4,6 +4,7 @@
         <text name="ui_sptTabLabel" text="INVENTORY" />
         <text name="ui_sptNoGoods" text="No goods stored in your silos, productions or animal pens." />
         <text name="ui_sptSilo" text="SILO" />
+        <text name="ui_sptFeedingRobot" text="FEEDING ROBOT" />
         <text name="ui_sptBunkerSilo" text="BUNKER SILO" />
         <text name="ui_sptProduction" text="PRODUCTION" />
         <text name="ui_sptAnimals" text="ANIMALS" />    </texts>
