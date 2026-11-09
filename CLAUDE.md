@@ -69,7 +69,17 @@ Renamed from SiloPricesTab to MySiloPricesTab on 2026-10-19, then to FarmInvento
 - `build.ps1` refuses to run while the game is running, even though it writes to Mods in waiting. Zip the same
   file list by hand if needed.
 
+- (v0.7.0.0, untested) HIDE / UNHIDE bottom-bar key hides the selected section's whole location; SHOW HIDDEN (n) shows
+  them again with "(HIDDEN)" in the heading. Buttons are appended to `frame.menuButtonInfo` while the tab is active
+  (MENU_EXTRA_2/3/4, first free ones) and removed on deactivate. List saved per player in
+  `modSettings/FS25_FarmInventory_hidden.xml` (key mapId|configFileName|x|z).
+- (v0.7.2.0, untested) The buttons go into `frame.menuButtonInfo[PRICES]`: the frame keeps one button list per sub-tab
+  (getMenuButtonInfo returns menuButtonInfo[state]). On menu close (onFrameClose) nothing is rebuilt and no events fire:
+  the full list goes back silently and is reloaded on the next open (fix for close lag / double Esc / dead wheel).
+
 ## Known gaps / ideas
 - Gamepad shoulder-button paging cannot reach the MY SILOS tab (mouse click only).
 - English only; add `translations/l10n_<lang>.xml` for more languages.
 - Multiplayer not tested.
+
+- ZIPPING (user rule, 2026-11-09, every AI, every mod): build EVERY zip with `python -I "MOD PROJECTS\Library\_FS25Knowledge\tools\build_zip.py" <modFolder> <out.zip>`. NEVER use PowerShell Compress-Archive (it writes backslash paths). Then list the zip and confirm no `\` in any entry.

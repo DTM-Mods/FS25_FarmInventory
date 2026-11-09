@@ -135,7 +135,65 @@ function FarmInventory.getFeedingRobotRows(placeable)
     return rows
 end
 
--- {kind, name, levels = fillTypeIndex -> liters}; feeding robots also have rows (see getFeedingRobotRows)
+---------------------------------------------------------------------------------------------
+-- Hidden locations (per player: modSettings/FS25_FarmInventory_hidden.xml, keyed by map, placeable xml and position)
+---------------------------------------------------------------------------------------------
+
+FarmInventory.HIDDEN_FILE = "FS25_FarmInventory_hidden.xml"
+
+function FarmInventory.getPlaceableKey(placeable)
+    local x, z = 0, 0
+    if placeable.rootNode ~= nil and placeable.rootNode ~= 0 then
+        local wx, _, wz = getWorldTranslation(placeable.rootNode)
+        x, z = math.floor(wx + 0.5), math.floor(wz + 0.5)
+    end
+    local mapId = g_currentMission ~= nil and g_currentMission.missionInfo ~= nil and g_currentMission.missionInfo.mapId or ""
+    return string.format("%s|%s|%d|%d", tostring(mapId), tostring(placeable.configFileName), x, z)
+end
+
+local function getHiddenFilename()
+    return getUserProfileAppPath() .. "modSettings/" .. FarmInventory.HIDDEN_FILE
+end
+
+function FarmInventory.loadHidden()
+    FarmInventory.hidden = {}
+    local xmlFile = XMLFile.loadIfExists("farmInventoryHidden", getHiddenFilename())
+    if xmlFile == nil then
+        return
+    end
+    xmlFile:iterate("farmInventoryHidden.location", function(_, key)
+        local locationKey = xmlFile:getString(key .. "#key")
+        if locationKey ~= nil then
+            FarmInventory.hidden[locationKey] = true
+        end
+    end)
+    xmlFile:delete()
+end
+
+function FarmInventory.saveHidden()
+    createFolder(getUserProfileAppPath() .. "modSettings/")
+    local xmlFile = XMLFile.create("farmInventoryHidden", getHiddenFilename(), "farmInventoryHidden")
+    if xmlFile == nil then
+        print(FarmInventory.TAG .. " could not save the hidden list")
+        return
+    end
+    local keys = {}
+    for locationKey in pairs(FarmInventory.hidden) do
+        table.insert(keys, locationKey)
+    end
+    table.sort(keys)
+    for i, locationKey in ipairs(keys) do
+        xmlFile:setString(string.format("farmInventoryHidden.location(%d)#key", i - 1), locationKey)
+    end
+    xmlFile:save()
+    xmlFile:delete()
+end
+
+function FarmInventory.isHidden(location)
+    return FarmInventory.hidden ~= nil and location.key ~= nil and FarmInventory.hidden[location.key] == true
+end
+
+-- {kind, name, key, levels = fillTypeIndex -> liters}; feeding robots also have rows (see getFeedingRobotRows)
 function FarmInventory.getOwnLocations(farmId)
     local placeableSystem = g_currentMission ~= nil and g_currentMission.placeableSystem or nil
     if placeableSystem == nil or farmId == nil then
@@ -143,7 +201,8 @@ function FarmInventory.getOwnLocations(farmId)
     end
 
     local function newLocation(kind, placeable)
-        return {kind = kind, name = placeable.getName ~= nil and placeable:getName() or "", levels = {}}
+        return {kind = kind, name = placeable.getName ~= nil and placeable:getName() or "", levels = {},
+            key = FarmInventory.getPlaceableKey(placeable)}
     end
     local function addLevel(location, fillTypeIndex, level)
         if fillTypeIndex ~= nil and level ~= nil and level > 0 then
@@ -342,9 +401,18 @@ function FarmInventory.applyFilter(frame)
     -- kept in two places shows under both, each with its own amount. Locations with nothing stored are left out,
     -- except feeding robots, which list every bin.
     local minLevel = FarmInventory.MIN_LEVEL
+    -- hidden locations are left out, unless SHOW HIDDEN is on
     local filtered, counts, locations, total = {}, {}, {}, 0
+    local hiddenCount = 0
     for _, location in ipairs(FarmInventory.getOwnLocations(getPlayerFarmId(frame))) do
         local entries = {}
+        if FarmInventory.isHidden(location) then
+            hiddenCount = hiddenCount + 1
+            if not frame.sptShowHidden then
+                location.rows = {}
+                location.skip = true
+            end
+        end
         if location.rows ~= nil then
             -- feeding robot: every bin in bin order, empty ones too; a feed the price list doesn't have uses its fill type
             for _, row in ipairs(location.rows) do
@@ -359,7 +427,7 @@ function FarmInventory.applyFilter(frame)
                 table.insert(entries, entry or g_fillTypeManager:getFillTypeByIndex(row.fillTypeIndex))
             end
         end
-        for _, gameEntries in ipairs(location.rows == nil and full or {}) do
+        for _, gameEntries in ipairs((location.rows == nil and not location.skip) and full or {}) do
             for _, entry in ipairs(gameEntries) do
                 local fillTypeIndex = getEntryFillTypeIndex(entry)
                 if fillTypeIndex ~= nil and (location.levels[fillTypeIndex] or 0) >= minLevel then
@@ -379,6 +447,7 @@ function FarmInventory.applyFilter(frame)
     frame.sptFilteredFillTypes = filtered
     frame.sptFilteredCounts = counts
     frame.sptLocations = locations
+    frame.sptHiddenCount = hiddenCount
     frame.fillTypes = filtered
     return total
 end
@@ -430,6 +499,132 @@ function FarmInventory.refresh(frame)
 end
 
 ---------------------------------------------------------------------------------------------
+-- HIDE / SHOW HIDDEN buttons in the bottom bar (added to the frame's own menuButtonInfo while the tab is active)
+---------------------------------------------------------------------------------------------
+
+FarmInventory.BUTTON_ACTIONS = {"MENU_EXTRA_2", "MENU_EXTRA_3", "MENU_EXTRA_4"}
+
+local function getSelectedLocation(frame)
+    local list = frame.productList
+    if list == nil or frame.sellingStationMode or frame.sptLocations == nil or not isFilterIntact(frame) then
+        return nil
+    end
+    return frame.sptLocations[list.selectedSectionIndex or 1]
+end
+
+function FarmInventory.toggleSelectedHidden(frame)
+    local location = getSelectedLocation(frame)
+    if location == nil or location.key == nil then
+        return
+    end
+    FarmInventory.hidden[location.key] = not FarmInventory.isHidden(location) or nil
+    FarmInventory.saveHidden()
+    FarmInventory.refresh(frame)
+    FarmInventory.updateButtons(frame)
+end
+
+function FarmInventory.toggleShowHidden(frame)
+    frame.sptShowHidden = not frame.sptShowHidden
+    FarmInventory.refresh(frame)
+    FarmInventory.updateButtons(frame)
+end
+
+-- The statistics frame keeps one button list PER SUB-TAB: menuButtonInfo[subCategory] (its getMenuButtonInfo returns
+-- menuButtonInfo[subCategoryPaging:getState()]; FS25_SortableVehicleTabbing adds [6]). Our buttons go in the PRICES list.
+local function getPricesButtonList(frame)
+    local all = frame.menuButtonInfo
+    local list = type(all) == "table" and all[PRICES] or nil
+    return type(list) == "table" and list or nil
+end
+
+-- markDirty = false while the menu is closing: the menu clears its button actions itself then
+function FarmInventory.removeButtons(frame, markDirty)
+    if frame.sptButtons == nil then
+        return
+    end
+    for _, infos in pairs({frame.sptButtonList or false, getPricesButtonList(frame) or false, frame.menuButtonInfo or false}) do
+        for i = (infos and #infos or 0), 1, -1 do
+            local info = infos[i]
+            if type(info) == "table" and info.sptOwner == FarmInventory then
+                table.remove(infos, i)
+            end
+        end
+    end
+    frame.sptButtons = nil
+    frame.sptButtonList = nil
+    if markDirty ~= false then
+        frame:setMenuButtonInfoDirty()
+    end
+end
+
+function FarmInventory.updateButtons(frame)
+    local infos = getPricesButtonList(frame)
+    if infos == nil or frame.sellingStationMode then
+        FarmInventory.removeButtons(frame)
+        return
+    end
+
+    local location = getSelectedLocation(frame)
+    local hideText = nil
+    if location ~= nil then
+        hideText = FarmInventory.isHidden(location) and FarmInventory.texts.unhide or FarmInventory.texts.hide
+    end
+    local showText = nil
+    if (frame.sptHiddenCount or 0) > 0 then
+        showText = string.format("%s (%d)", frame.sptShowHidden and FarmInventory.texts.hideHidden or FarmInventory.texts.showHidden,
+            frame.sptHiddenCount)
+    end
+
+    -- rebuild only when the game replaced the button list or a text changed
+    local buttons = frame.sptButtons
+    local present = buttons ~= nil and frame.sptButtonList == infos
+    for _, info in ipairs(buttons or {}) do
+        local found = false
+        for _, other in ipairs(infos) do
+            found = found or other == info
+        end
+        present = present and found
+    end
+    if present and buttons.hideText == hideText and buttons.showText == showText then
+        return
+    end
+    FarmInventory.removeButtons(frame)
+
+    local used = {}
+    for _, info in ipairs(infos) do
+        if info.inputAction ~= nil then
+            used[info.inputAction] = true
+        end
+    end
+    local function nextAction()
+        for _, name in ipairs(FarmInventory.BUTTON_ACTIONS) do
+            local action = InputAction[name]
+            if action ~= nil and not used[action] then
+                used[action] = true
+                return action
+            end
+        end
+        return nil
+    end
+
+    buttons = {hideText = hideText, showText = showText}
+    for _, button in ipairs({{hideText, FarmInventory.toggleSelectedHidden}, {showText, FarmInventory.toggleShowHidden}}) do
+        local action = button[1] ~= nil and nextAction() or nil
+        if action ~= nil then
+            local toggle = button[2]
+            table.insert(buttons, {inputAction = action, text = button[1], sptOwner = FarmInventory,
+                callback = function() toggle(frame) end})
+        end
+    end
+    for _, info in ipairs(buttons) do
+        table.insert(infos, info)
+    end
+    frame.sptButtons = buttons
+    frame.sptButtonList = infos
+    frame:setMenuButtonInfoDirty()
+end
+
+---------------------------------------------------------------------------------------------
 -- Activation
 ---------------------------------------------------------------------------------------------
 
@@ -457,19 +652,40 @@ function FarmInventory.activate(frame)
     end
 end
 
-function FarmInventory.deactivate(frame)
+-- closing = true when the whole menu is closing (Esc). Then nothing is rebuilt and no list/selection/button
+-- events are fired into the closing menu: the full list is put back silently and redrawn on the next open.
+function FarmInventory.deactivate(frame, closing)
     if not frame.sptActive then
         return
     end
     frame.sptActive = false
+    FarmInventory.removeButtons(frame, not closing)
 
     local selected = getSelectedEntry(frame)
     restoreFillTypes(frame)
     FarmInventory.setEmptyState(frame, false)
-    if frame.productList ~= nil then
-        frame.productList:reloadData()
+    if closing then
+        -- keep the list's selection inside the full list without firing a selection change
+        local list = frame.productList
+        if list ~= nil and frame.fillTypes ~= nil then
+            local section, index = 1, 1
+            for s, entries in ipairs(frame.fillTypes) do
+                for i, candidate in ipairs(entries) do
+                    if candidate == selected then
+                        section, index = s, i
+                    end
+                end
+            end
+            list.selectedSectionIndex = section
+            list.selectedIndex = index
+        end
+        frame.sptReloadOnOpen = true
+    else
+        if frame.productList ~= nil then
+            frame.productList:reloadData()
+        end
+        selectEntry(frame, selected)
     end
-    selectEntry(frame, selected)
 
     if frame.sptSavedHeaderText ~= nil and frame.categoryHeaderText ~= nil and frame.subCategoryPaging:getState() == PRICES then
         frame.categoryHeaderText:setText(frame.sptSavedHeaderText)
@@ -582,7 +798,7 @@ function FarmInventory.setup(frame)
 end
 
 function FarmInventory.teardown(frame)
-    FarmInventory.deactivate(frame)
+    FarmInventory.deactivate(frame, true)
     local pricesTab = frame.subCategoryTabs ~= nil and frame.subCategoryTabs[PRICES] or nil
     if pricesTab ~= nil then
         restoreFields(pricesTab)
@@ -604,10 +820,16 @@ end
 
 function FarmInventory.onFrameOpen(frame)
     FarmInventory.setup(frame)
+    if frame.sptReloadOnOpen then
+        frame.sptReloadOnOpen = nil
+        if not frame.sptActive and frame.productList ~= nil then
+            frame.productList:reloadData() -- drop the INVENTORY rows left from the last close
+        end
+    end
 end
 
 function FarmInventory.onFrameClose(frame)
-    FarmInventory.deactivate(frame)
+    FarmInventory.deactivate(frame, true)
 end
 
 function FarmInventory.onUpdate(frame)
@@ -621,6 +843,7 @@ function FarmInventory.onUpdate(frame)
     if not isFilterIntact(frame) then
         FarmInventory.refresh(frame) -- the game rebuilt the product list
     end
+    FarmInventory.updateButtons(frame)
     if frame.categoryHeaderText ~= nil and frame.categoryHeaderText.text ~= FarmInventory.texts.label then
         frame.categoryHeaderText:setText(FarmInventory.texts.label)
     end
@@ -674,7 +897,11 @@ function FarmInventory.getTitleForSectionHeader(frame, superFunc, list, section,
     if location == nil then
         return superFunc(frame, list, section, ...)
     end
-    return string.format("%s  |  %s", FarmInventory.texts.kinds[location.kind] or "", location.name)
+    local title = string.format("%s  |  %s", FarmInventory.texts.kinds[location.kind] or "", location.name)
+    if FarmInventory.isHidden(location) then
+        title = string.format("%s  (%s)", title, FarmInventory.texts.hiddenTag)
+    end
+    return title
 end
 
 local STORAGE_ATTRIBUTES = {"storage", "fillLevel", "storageAmount", "amount", "stock", "quantity"}
@@ -826,8 +1053,14 @@ function FarmInventory:loadMap()
             feedingRobot = g_i18n:getText("ui_sptFeedingRobot"),
             production = g_i18n:getText("ui_sptProduction"),
             animals = g_i18n:getText("ui_sptAnimals")
-        }
+        },
+        hide = g_i18n:getText("ui_sptHide"),
+        unhide = g_i18n:getText("ui_sptUnhide"),
+        showHidden = g_i18n:getText("ui_sptShowHidden"),
+        hideHidden = g_i18n:getText("ui_sptHideHidden"),
+        hiddenTag = g_i18n:getText("ui_sptHiddenTag")
     }
+    FarmInventory.loadHidden()
     InGameMenuStatisticsFrame.sptHandler = FarmInventory
 end
 
