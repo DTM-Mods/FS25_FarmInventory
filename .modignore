@@ -1,0 +1,4 @@
+# Files that stay in the repository but never go into the mod zip (see DTM-Mods/.github ci/README.md)
+
+# temporary diagnostic, not loaded by modDesc.xml
+scripts/SiloPricesDiag.lua
