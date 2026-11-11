@@ -42,6 +42,7 @@ At a silo's fill trigger, the fill type list only shows goods that are actually 
 <p align="center">
   <img src="https://raw.githubusercontent.com/DTM-Mods/.github/main/assets/for-developers.jpg" alt="For developers" width="100%">
 </p>
+
 `powershell -ExecutionPolicy Bypass -File tools\build.ps1` (game must be closed) makes `FS25_FarmInventory.zip`
 in `Testing_local`.
 
