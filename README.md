@@ -40,13 +40,22 @@ grouped by where they are kept, with the normal market info (stations, prices, p
 At a silo's fill trigger, the fill type list only shows goods that are actually in stock.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/DTM-Mods/.github/main/assets/for-developers.jpg" alt="For developers" width="100%">
+  <img src="https://raw.githubusercontent.com/DTM-Mods/.github/main/assets/installation.jpg" alt="Installation" width="100%">
 </p>
+
+Download `FS25_FarmInventory.zip` from the [latest release](https://github.com/DTM-Mods/FS25_FarmInventory/releases/latest) and put it in `Documents/My Games/FarmingSimulator2025/mods`, without unzipping or renaming it. In multiplayer, the server and every player need the same version.
+
+<details>
+<summary><b>For developers</b>: files, building and tests</summary>
+
+### Building
 
 `powershell -ExecutionPolicy Bypass -File tools\build.ps1` (game must be closed) makes `FS25_FarmInventory.zip`
 in `Testing_local`.
 
 Version 0.5.0.0: per-location list, not yet tested in game.
+
+</details>
 
 ---
 
