@@ -1,0 +1,17 @@
+{
+  "2.jpg": {
+    "title": "Your stock, place by place",
+    "text": "An INVENTORY tab next to PRICES lists what each silo holds, with where to sell it and the price.",
+    "at": "bottom"
+  },
+  "3.jpg": {
+    "title": "Tanks, feeding robots, bunker silos",
+    "text": "Every storage with its fill level, grouped by the building it is in.",
+    "at": "bottom"
+  },
+  "4.jpg": {
+    "title": "Productions too",
+    "text": "Goods waiting in your productions are listed with the rest.",
+    "at": "bottom"
+  }
+}
