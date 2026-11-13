@@ -32,12 +32,17 @@ Farming Simulator 25 mod by PropaineX. Formerly "My Silo Prices Tab" (FS25_MySil
 Adds an **INVENTORY** tab next to PRICES in the in-game Prices menu. It lists the goods your farm has stored,
 grouped by where they are kept, with the normal market info (stations, prices, price history):
 
-- **SILO | name**: each silo; silo extensions are added into the silo they are connected to
+- **SILO | name**: each silo; silo extensions are added into the silo they are connected to. Liquid storage (milk, water, diesel and so on) comes right after the dry silos
+- **FEEDING ROBOT | name**: every bin of a feeding robot as stored / capacity (also the Pig Barn With Feeding Robot hoppers)
 - **BUNKER SILO | name**
 - **PRODUCTION | name**: the goods it makes (inputs are not listed)
 - **ANIMALS | name**: what is in the animal pen's storage (milk, manure, ...)
 
+**HIDE** a whole location you don't want to see, and **SHOW HIDDEN** to bring hidden ones back. Your hidden list is saved per player.
+
 At a silo's fill trigger, the fill type list only shows goods that are actually in stock.
+
+See [PATCH_NOTES.md](PATCH_NOTES.md) for what changed in each version.
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/DTM-Mods/.github/main/assets/installation.jpg" alt="Installation" width="100%">
@@ -59,7 +64,7 @@ MIT, see [LICENSE](LICENSE).
 `powershell -ExecutionPolicy Bypass -File tools\build.ps1` (game must be closed) makes `FS25_FarmInventory.zip`
 in `Testing_local`.
 
-Version 0.5.0.0: per-location list, not yet tested in game.
+The version is in `modDesc.xml`; [PATCH_NOTES.md](PATCH_NOTES.md) has the history.
 
 </details>
 
