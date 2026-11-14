@@ -4,6 +4,10 @@
 
 # Patch notes
 
+## 0.7.2.1
+
+- The author now shows as **DTM Mods, PropaineX** in the mod list.
+
 ## 0.7.2.0
 - Closing the menu from the INVENTORY tab no longer lags, Esc only needs one press, and the mouse wheel scrolls the list again.
 - The HIDE / SHOW HIDDEN buttons now show up on the INVENTORY tab.
