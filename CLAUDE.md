@@ -1,10 +1,10 @@
-# FS25_FarmInventory (Farm Inventory Pro Edition)
+# FS25_FarmInventory (Farm Inventory Plus)
 
 Farming Simulator 25 mod by PropaineX. Adds an **INVENTORY** tab next to PRICES in the in-game
 Prices menu that lists only goods stored in the player's own silos, with the normal market info
 (stations, prices, price history). Status: v0.1.0.0 tab tested in singleplayer (Oct 2026); v0.2.0.0 adds the silo load filter (untested); v0.3.0.0 also counts own production points (untested); v0.4.0.0 puts production goods in a PRODUCTIONS
 section and writes the stored amount into every row (untested).
-Renamed from SiloPricesTab to MySiloPricesTab on 2026-10-19, then to FarmInventory on 2026-10-29 (v0.5.0.0, names only on top of the 0.4.3.0 code: folder, files, Lua global `FarmInventory`, title "Farm Inventory Pro Edition", tab label "INVENTORY", zip `FS25_FarmInventory.zip`). Plans for the per-location list: see HANDOFF_2026-10-29.md.
+Renamed from SiloPricesTab to MySiloPricesTab on 2026-10-19, then to FarmInventory on 2026-10-29 (v0.5.0.0, names only on top of the 0.4.3.0 code: folder, files, Lua global `FarmInventory`, title "Farm Inventory Plus", tab label "INVENTORY", zip `FS25_FarmInventory.zip`). Plans for the per-location list: see HANDOFF_2026-10-29.md.
 
 ## Files
 - `modDesc.xml` - mod descriptor (descVersion 111). Icon is `icon_farmInventory.dds`.

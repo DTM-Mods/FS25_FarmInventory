@@ -4,6 +4,20 @@
 
 # Patch notes
 
+## 1.0.0.0
+
+First ModHub release.
+
+- Version 1.0.0.0: ModHub needs the first number to be at least 1.
+- Fixes for the GIANTS TestRunner: no more pcall in the scripts (errors now reach the log), and the mod icon is DXT1 without mipmaps.
+- modDesc: descVersion 116 for game 1.25.1.0 (TestRunner 0.9.24 rejects 115).
+- Description now covers feeding robots, the hide buttons (in the Inventory tab of the Esc menu, bottom bar), and the GitHub link (ModHub script template).
+- Description in all 27 game languages (en, de, fr, fc, es, ea, it, nl, pl, cz, br, pt, ru, uk, tr, hu, ro, sv, da, no, fi, jp, kr, ct, cs, id, vi).
+
+## 0.7.3.0
+
+- The mod is now called **Farm Inventory Plus** (was Farm Inventory Pro Edition).
+
 ## 0.7.2.1
 
 - The author now shows as **DTM Mods, PropaineX** in the mod list.

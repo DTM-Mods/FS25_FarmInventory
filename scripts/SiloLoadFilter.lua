@@ -39,18 +39,21 @@ function SiloLoadFilter.toggleLoading(trigger, superFunc, ...)
         return superFunc(trigger, ...)
     end
 
-    local ownField = rawget(source, "getAllFillLevels")
-    local getAllFillLevels = source.getAllFillLevels
+    -- The original is kept on the source until it is put back, so if the game errors inside
+    -- superFunc (the error still reaches the log), the next call restores the real function
+    -- instead of wrapping the wrapper.
+    if source.sltSaved == nil then
+        source.sltSaved = {own = rawget(source, "getAllFillLevels"), fn = source.getAllFillLevels}
+    end
+    local saved = source.sltSaved
     source.getAllFillLevels = function(self, ...)
-        return filterFirst(getAllFillLevels(self, ...))
+        return filterFirst(saved.fn(self, ...))
     end
-    local results = {pcall(superFunc, trigger, ...)}
-    source.getAllFillLevels = ownField
+    local results = {superFunc(trigger, ...)}
+    source.getAllFillLevels = saved.own
+    source.sltSaved = nil
 
-    if not results[1] then
-        error(results[2], 0)
-    end
-    return unpack(results, 2, table.maxn(results))
+    return unpack(results, 1, table.maxn(results))
 end
 
 ---------------------------------------------------------------------------------------------

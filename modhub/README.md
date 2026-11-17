@@ -1,4 +1,4 @@
-# ModHub upload: Farm Inventory Pro Edition
+# ModHub upload: Farm Inventory Plus
 
 What to enter in the GIANTS ModHub upload form for this mod. Each text box below has a copy button on GitHub.
 
@@ -8,9 +8,9 @@ What to enter in the GIANTS ModHub upload form for this mod. Each text box below
 
 | Field | Value |
 |-------|-------|
-| Title English | Farm Inventory Pro Edition |
-| Title German | Hofinventar Pro Edition |
-| Title French | Inventaire de la ferme Pro Edition |
+| Title English | Farm Inventory Plus |
+| Title German | Hofinventar Plus |
+| Title French | Inventaire de la ferme Plus |
 | Version | `0` `7` `2` `1` |
 | Author | DTM Mods, PropaineX |
 | Manufacturer | Lizard |
@@ -20,17 +20,17 @@ What to enter in the GIANTS ModHub upload form for this mod. Each text box below
 
 ## Title English
 ```text
-Farm Inventory Pro Edition
+Farm Inventory Plus
 ```
 
 ## Title German
 ```text
-Hofinventar Pro Edition
+Hofinventar Plus
 ```
 
 ## Title French
 ```text
-Inventaire de la ferme Pro Edition
+Inventaire de la ferme Plus
 ```
 
 ## Description English

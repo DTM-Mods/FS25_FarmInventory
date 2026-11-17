@@ -3,10 +3,10 @@
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/DTM-Mods/.github/main/assets/icons/FS25_FarmInventory.png" alt="Farm Inventory Pro Edition icon" width="128">
+  <img src="https://raw.githubusercontent.com/DTM-Mods/.github/main/assets/icons/FS25_FarmInventory.png" alt="Farm Inventory Plus icon" width="128">
 </p>
 
-<h1 align="center">Farm Inventory Pro Edition</h1>
+<h1 align="center">Farm Inventory Plus</h1>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Farming%20Simulator-25-2E6B4F" alt="Farming Simulator 25">
@@ -42,6 +42,17 @@ grouped by where they are kept, with the normal market info (stations, prices, p
 
 At a silo's fill trigger, the fill type list only shows goods that are actually in stock.
 
+**Buttons** (no in-world hotkeys: everything is in the INVENTORY tab of the Esc menu, bottom bar):
+
+| Action | Game input |
+|---|---|
+| Hide / unhide the selected location | Menu Extra 2 (keyboard and controller as bound in Controls) |
+| Show / hide hidden locations | Menu Extra 3 |
+
+If another mod already uses one of these, the next free one (up to Menu Extra 4) is used.
+
+**Languages**: the mod description is in all 27 game languages. The in-game text (tab and buttons) is English for now.
+
 See [PATCH_NOTES.md](PATCH_NOTES.md) for what changed in each version.
 
 <p align="center">
@@ -65,6 +76,9 @@ MIT, see [LICENSE](LICENSE).
 in `Testing_local`.
 
 The version is in `modDesc.xml`; [PATCH_NOTES.md](PATCH_NOTES.md) has the history.
+
+`modDesc.xml` uses descVersion 116 (game 1.25.1.0; the GIANTS TestRunner 0.9.24 rejects older values). Check the
+`ModDesc Version` line in the game's `log.txt` after a game update.
 
 </details>
 

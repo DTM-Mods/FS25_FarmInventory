@@ -1,16 +1,283 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<modDesc descVersion="111">
+<modDesc descVersion="116">
     <author>DTM Mods, PropaineX</author>
-    <version>0.7.2.1</version>
+    <version>1.0.0.0</version>
 
     <title>
-        <en>Farm Inventory Pro Edition</en>
+        <en>Farm Inventory Plus</en>
     </title>
 
     <description>
-        <en><![CDATA[Adds an "Inventory" tab to the Prices menu that lists the goods your farm has stored, grouped by where they are kept: each silo (silo extensions included), bunker silo, production (the goods it makes) and animal pen gets its own heading, with how much of each good is there. Full market information stays (stations, prices, price history).
+        <en><![CDATA[Adds an "Inventory" tab next to Prices in the Prices menu. It lists only the goods your farm has stored, grouped by where they are kept: each silo (silo extensions included), feeding robot, bunker silo, production (the goods it makes) and animal pen gets its own heading, with how much of each good is there. Feeding robots show every bin as stored / capacity. Full market information stays (stations, prices, price history).
 
-When you fill up at a silo, the fill type list only shows goods that are actually in stock.]]></en>
+When you fill up at a silo, the fill type list only shows goods that are actually in stock.
+
+In the Inventory tab (Esc menu), bottom bar:
+- Hide / Unhide the selected location: bottom-bar button (Menu Extra 2 action, keyboard and controller as bound in Controls)
+- Show / Hide hidden locations: bottom-bar button (Menu Extra 3 action)
+Hidden locations are saved per player.
+
+Open source: https://github.com/DTM-Mods/FS25_FarmInventory]]></en>
+        <de><![CDATA[Fügt im Preismenü neben „Preise“ einen Reiter „Inventar“ hinzu. Er zeigt nur die Waren, die dein Hof gelagert hat, sortiert nach Lagerort: Jedes Silo (inklusive Siloerweiterungen), jeder Fütterungsroboter, jedes Fahrsilo, jede Produktion (die Waren, die sie herstellt) und jeder Tierstall bekommt eine eigene Überschrift mit der Menge jeder Ware. Fütterungsroboter zeigen jeden Behälter als Füllstand / Kapazität. Alle Marktinfos bleiben erhalten (Verkaufsstellen, Preise, Preisverlauf).
+
+Beim Befüllen an einem Silo zeigt die Liste der Füllarten nur Waren, die wirklich vorrätig sind.
+
+Im Reiter „Inventar“ (Esc-Menü), untere Leiste:
+- Ausgewählten Lagerort aus-/einblenden: Schaltfläche unten (Aktion „Menü Extra 2“, Tastatur und Controller laut Steuerung)
+- Ausgeblendete Lagerorte zeigen/verbergen: Schaltfläche unten (Aktion „Menü Extra 3“)
+Ausgeblendete Lagerorte werden pro Spieler gespeichert.
+
+Open Source: https://github.com/DTM-Mods/FS25_FarmInventory]]></de>
+        <fr><![CDATA[Ajoute un onglet « Inventaire » à côté de « Prix » dans le menu des prix. Il ne liste que les marchandises stockées par votre ferme, regroupées par lieu de stockage : chaque silo (extensions de silo comprises), robot d'alimentation, silo couloir, production (les produits qu'elle fabrique) et enclos d'animaux a son propre titre, avec la quantité de chaque marchandise. Les robots d'alimentation affichent chaque bac en stock / capacité. Toutes les infos du marché restent (points de vente, prix, historique des prix).
+
+Quand vous chargez à un silo, la liste des types de remplissage n'affiche que les marchandises réellement en stock.
+
+Dans l'onglet Inventaire (menu Échap), barre du bas :
+- Masquer / afficher le lieu sélectionné : bouton en bas (action « Menu Extra 2 », clavier et manette selon les Commandes)
+- Afficher / masquer les lieux masqués : bouton en bas (action « Menu Extra 3 »)
+Les lieux masqués sont enregistrés par joueur.
+
+Open source : https://github.com/DTM-Mods/FS25_FarmInventory]]></fr>
+        <fc><![CDATA[Ajoute un onglet « Inventaire » à côté de « Prix » dans le menu des prix. Il ne liste que les marchandises entreposées par votre ferme, regroupées par lieu d'entreposage : chaque silo (extensions de silo comprises), robot d'alimentation, silo-fosse, production (les produits qu'elle fabrique) et enclos d'animaux a son propre titre, avec la quantité de chaque marchandise. Les robots d'alimentation affichent chaque bac en stock / capacité. Toutes les infos du marché restent (points de vente, prix, historique des prix).
+
+Quand vous chargez à un silo, la liste des types de remplissage n'affiche que les marchandises réellement en stock.
+
+Dans l'onglet Inventaire (menu Échap), barre du bas :
+- Masquer / afficher le lieu sélectionné : bouton en bas (action « Menu Extra 2 », clavier et manette selon les Commandes)
+- Afficher / masquer les lieux masqués : bouton en bas (action « Menu Extra 3 »)
+Les lieux masqués sont enregistrés par joueur.
+
+Code source ouvert : https://github.com/DTM-Mods/FS25_FarmInventory]]></fc>
+        <es><![CDATA[Añade una pestaña «Inventario» junto a «Precios» en el menú de precios. Solo muestra los productos que tu granja tiene almacenados, agrupados por dónde se guardan: cada silo (ampliaciones incluidas), robot de alimentación, silo búnker, producción (los productos que fabrica) y corral de animales tiene su propio encabezado, con la cantidad de cada producto. Los robots de alimentación muestran cada depósito como almacenado / capacidad. Se mantiene toda la información del mercado (puntos de venta, precios, historial de precios).
+
+Al cargar en un silo, la lista de tipos de llenado solo muestra los productos que realmente hay en existencias.
+
+En la pestaña Inventario (menú Esc), barra inferior:
+- Ocultar / mostrar la ubicación seleccionada: botón inferior (acción «Menú Extra 2», teclado y mando según Controles)
+- Mostrar / ocultar ubicaciones ocultas: botón inferior (acción «Menú Extra 3»)
+Las ubicaciones ocultas se guardan por jugador.
+
+Código abierto: https://github.com/DTM-Mods/FS25_FarmInventory]]></es>
+        <ea><![CDATA[Agrega una pestaña «Inventario» junto a «Precios» en el menú de precios. Solo muestra los productos que tu granja tiene almacenados, agrupados por dónde se guardan: cada silo (ampliaciones incluidas), robot de alimentación, silo búnker, producción (los productos que fabrica) y corral de animales tiene su propio encabezado, con la cantidad de cada producto. Los robots de alimentación muestran cada depósito como almacenado / capacidad. Se mantiene toda la información del mercado (puntos de venta, precios, historial de precios).
+
+Al cargar en un silo, la lista de tipos de llenado solo muestra los productos que realmente hay en existencia.
+
+En la pestaña Inventario (menú Esc), barra inferior:
+- Ocultar / mostrar la ubicación seleccionada: botón inferior (acción «Menú Extra 2», teclado y control según Controles)
+- Mostrar / ocultar ubicaciones ocultas: botón inferior (acción «Menú Extra 3»)
+Las ubicaciones ocultas se guardan por jugador.
+
+Código abierto: https://github.com/DTM-Mods/FS25_FarmInventory]]></ea>
+        <it><![CDATA[Aggiunge una scheda "Inventario" accanto a "Prezzi" nel menu dei prezzi. Elenca solo le merci immagazzinate dalla tua fattoria, raggruppate per luogo: ogni silo (estensioni incluse), robot di alimentazione, silo a trincea, produzione (le merci che produce) e recinto per animali ha il proprio titolo, con la quantità di ogni merce. I robot di alimentazione mostrano ogni contenitore come quantità / capacità. Tutte le informazioni di mercato restano (punti vendita, prezzi, storico prezzi).
+
+Quando carichi da un silo, l'elenco dei tipi di riempimento mostra solo le merci realmente disponibili.
+
+Nella scheda Inventario (menu Esc), barra in basso:
+- Nascondi / mostra il luogo selezionato: pulsante in basso (azione "Menu Extra 2", tastiera e controller come da Comandi)
+- Mostra / nascondi i luoghi nascosti: pulsante in basso (azione "Menu Extra 3")
+I luoghi nascosti vengono salvati per giocatore.
+
+Open source: https://github.com/DTM-Mods/FS25_FarmInventory]]></it>
+        <nl><![CDATA[Voegt in het prijzenmenu naast "Prijzen" een tabblad "Inventaris" toe. Het toont alleen de goederen die je boerderij heeft opgeslagen, gegroepeerd per opslagplaats: elke silo (silo-uitbreidingen inbegrepen), voerrobot, sleufsilo, productie (de goederen die ze maakt) en dierenverblijf krijgt een eigen kop, met de hoeveelheid van elk goed. Voerrobots tonen elke bak als voorraad / capaciteit. Alle marktinformatie blijft (verkooppunten, prijzen, prijsverloop).
+
+Bij het laden aan een silo toont de lijst met vultypes alleen goederen die echt op voorraad zijn.
+
+In het tabblad Inventaris (Esc-menu), onderste balk:
+- Geselecteerde locatie verbergen / tonen: knop onderaan (actie "Menu Extra 2", toetsenbord en controller volgens Besturing)
+- Verborgen locaties tonen / verbergen: knop onderaan (actie "Menu Extra 3")
+Verborgen locaties worden per speler opgeslagen.
+
+Open source: https://github.com/DTM-Mods/FS25_FarmInventory]]></nl>
+        <pl><![CDATA[Dodaje w menu cen zakładkę „Inwentarz” obok „Ceny”. Pokazuje tylko towary przechowywane przez twoje gospodarstwo, pogrupowane według miejsca: każdy silos (z rozszerzeniami), robot paszowy, silos przejazdowy, produkcja (towary, które wytwarza) i zagroda dla zwierząt ma własny nagłówek z ilością każdego towaru. Roboty paszowe pokazują każdy zbiornik jako zapas / pojemność. Wszystkie informacje rynkowe zostają (punkty sprzedaży, ceny, historia cen).
+
+Podczas załadunku przy silosie lista typów napełniania pokazuje tylko towary, które faktycznie są na stanie.
+
+W zakładce Inwentarz (menu Esc), dolny pasek:
+- Ukryj / pokaż wybrane miejsce: przycisk na dole (akcja „Menu Extra 2”, klawiatura i kontroler wg Sterowania)
+- Pokaż / ukryj ukryte miejsca: przycisk na dole (akcja „Menu Extra 3”)
+Ukryte miejsca są zapisywane dla każdego gracza.
+
+Otwarty kod: https://github.com/DTM-Mods/FS25_FarmInventory]]></pl>
+        <cz><![CDATA[Přidá do nabídky cen záložku „Inventář“ vedle „Ceny“. Zobrazuje jen zboží uskladněné tvou farmou, seskupené podle místa uložení: každé silo (včetně rozšíření), krmný robot, žlabové silo, výroba (zboží, které vyrábí) a výběh zvířat má vlastní nadpis s množstvím každého zboží. Krmné roboty ukazují každý zásobník jako zásoba / kapacita. Všechny tržní informace zůstávají (prodejní místa, ceny, vývoj cen).
+
+Při nakládání u sila seznam druhů náplně ukazuje jen zboží, které je opravdu na skladě.
+
+V záložce Inventář (nabídka Esc), spodní lišta:
+- Skrýt / zobrazit vybrané místo: tlačítko dole (akce „Menu Extra 2“, klávesnice a ovladač podle Ovládání)
+- Zobrazit / skrýt skrytá místa: tlačítko dole (akce „Menu Extra 3“)
+Skrytá místa se ukládají pro každého hráče.
+
+Otevřený zdrojový kód: https://github.com/DTM-Mods/FS25_FarmInventory]]></cz>
+        <br><![CDATA[Adiciona uma aba "Inventário" ao lado de "Preços" no menu de preços. Ela lista só os produtos que sua fazenda tem armazenados, agrupados por local: cada silo (extensões incluídas), robô de alimentação, silo trincheira, produção (os produtos que ela fabrica) e baia de animais tem seu próprio título, com a quantidade de cada produto. Os robôs de alimentação mostram cada depósito como estoque / capacidade. Todas as informações de mercado continuam (pontos de venda, preços, histórico de preços).
+
+Ao carregar em um silo, a lista de tipos de carga mostra só os produtos que realmente estão em estoque.
+
+Na aba Inventário (menu Esc), barra inferior:
+- Ocultar / mostrar o local selecionado: botão inferior (ação "Menu Extra 2", teclado e controle conforme os Controles)
+- Mostrar / ocultar locais ocultos: botão inferior (ação "Menu Extra 3")
+Os locais ocultos são salvos por jogador.
+
+Código aberto: https://github.com/DTM-Mods/FS25_FarmInventory]]></br>
+        <pt><![CDATA[Adiciona um separador "Inventário" ao lado de "Preços" no menu de preços. Lista apenas os produtos que a sua quinta tem armazenados, agrupados por local: cada silo (extensões incluídas), robô de alimentação, silo de trincheira, produção (os produtos que fabrica) e recinto de animais tem o seu próprio título, com a quantidade de cada produto. Os robôs de alimentação mostram cada depósito como armazenado / capacidade. Toda a informação de mercado mantém-se (pontos de venda, preços, histórico de preços).
+
+Ao carregar num silo, a lista de tipos de enchimento mostra apenas os produtos realmente em stock.
+
+No separador Inventário (menu Esc), barra inferior:
+- Ocultar / mostrar o local selecionado: botão inferior (ação "Menu Extra 2", teclado e comando conforme os Controlos)
+- Mostrar / ocultar locais ocultos: botão inferior (ação "Menu Extra 3")
+Os locais ocultos são guardados por jogador.
+
+Código aberto: https://github.com/DTM-Mods/FS25_FarmInventory]]></pt>
+        <ru><![CDATA[Добавляет в меню цен вкладку «Инвентарь» рядом с «Цены». На ней показаны только товары, хранящиеся на вашей ферме, сгруппированные по месту хранения: у каждого силоса (включая расширения), робота-кормораздатчика, силосной траншеи, производства (товары, которые оно выпускает) и загона для животных свой заголовок с количеством каждого товара. Роботы-кормораздатчики показывают каждый бункер как запас / вместимость. Вся рыночная информация сохраняется (пункты продажи, цены, история цен).
+
+При загрузке у силоса список типов груза показывает только товары, которые действительно есть в наличии.
+
+На вкладке «Инвентарь» (меню Esc), нижняя панель:
+- Скрыть / показать выбранное место: кнопка внизу (действие «Меню Экстра 2», клавиатура и геймпад по настройкам управления)
+- Показать / скрыть скрытые места: кнопка внизу (действие «Меню Экстра 3»)
+Скрытые места сохраняются для каждого игрока.
+
+Открытый исходный код: https://github.com/DTM-Mods/FS25_FarmInventory]]></ru>
+        <uk><![CDATA[Додає в меню цін вкладку «Інвентар» поруч із «Ціни». На ній показано лише товари, що зберігаються на вашій фермі, згруповані за місцем зберігання: кожен силос (з розширеннями), робот-кормороздавач, силосна траншея, виробництво (товари, які воно виготовляє) і загін для тварин має власний заголовок із кількістю кожного товару. Роботи-кормороздавачі показують кожен бункер як запас / місткість. Уся ринкова інформація залишається (пункти продажу, ціни, історія цін).
+
+Під час завантаження біля силосу список типів вантажу показує лише товари, які справді є в наявності.
+
+На вкладці «Інвентар» (меню Esc), нижня панель:
+- Сховати / показати вибране місце: кнопка внизу (дія «Меню Екстра 2», клавіатура й геймпад за налаштуваннями керування)
+- Показати / сховати приховані місця: кнопка внизу (дія «Меню Екстра 3»)
+Приховані місця зберігаються для кожного гравця.
+
+Відкритий код: https://github.com/DTM-Mods/FS25_FarmInventory]]></uk>
+        <tr><![CDATA[Fiyatlar menüsünde "Fiyatlar"ın yanına bir "Envanter" sekmesi ekler. Yalnızca çiftliğinizde depolanan ürünleri, saklandıkları yere göre gruplayarak listeler: her silo (silo uzantıları dahil), besleme robotu, bunker silo, üretim (ürettiği mallar) ve hayvan ağılı kendi başlığını alır ve her ürünün miktarını gösterir. Besleme robotları her bölmeyi stok / kapasite olarak gösterir. Tüm piyasa bilgileri kalır (satış noktaları, fiyatlar, fiyat geçmişi).
+
+Bir siloda dolum yaparken dolum türü listesi yalnızca gerçekten stokta olan ürünleri gösterir.
+
+Envanter sekmesinde (Esc menüsü), alt çubuk:
+- Seçili konumu gizle / göster: alt çubuk düğmesi ("Menü Ekstra 2" eylemi, klavye ve kontrolcü Kontroller ayarına göre)
+- Gizli konumları göster / gizle: alt çubuk düğmesi ("Menü Ekstra 3" eylemi)
+Gizli konumlar oyuncu başına kaydedilir.
+
+Açık kaynak: https://github.com/DTM-Mods/FS25_FarmInventory]]></tr>
+        <hu><![CDATA[Az árak menüben az „Árak” mellé egy „Készlet” fület ad. Csak a gazdaságod által tárolt árukat mutatja, tárolási hely szerint csoportosítva: minden siló (bővítésekkel együtt), etetőrobot, árokszilázs-siló, üzem (az általa gyártott áruk) és állattartó saját fejlécet kap, az egyes áruk mennyiségével. Az etetőrobotok minden tartályt készlet / kapacitás formában mutatnak. Minden piaci információ megmarad (eladási pontok, árak, ártörténet).
+
+Silónál töltéskor a töltettípus-lista csak a ténylegesen készleten lévő árukat mutatja.
+
+A Készlet fülön (Esc menü), alsó sáv:
+- Kijelölt hely elrejtése / megjelenítése: alsó gomb („Menü Extra 2” művelet, billentyűzet és kontroller a Vezérlés szerint)
+- Elrejtett helyek mutatása / elrejtése: alsó gomb („Menü Extra 3” művelet)
+Az elrejtett helyek játékosonként mentődnek.
+
+Nyílt forráskód: https://github.com/DTM-Mods/FS25_FarmInventory]]></hu>
+        <ro><![CDATA[Adaugă în meniul de prețuri o filă „Inventar” lângă „Prețuri”. Afișează doar mărfurile depozitate de ferma ta, grupate după locul în care sunt păstrate: fiecare siloz (inclusiv extensiile), robot de furajare, siloz tip buncăr, producție (mărfurile pe care le produce) și țarc de animale are propriul titlu, cu cantitatea fiecărei mărfi. Roboții de furajare arată fiecare recipient ca stoc / capacitate. Toate informațiile de piață rămân (puncte de vânzare, prețuri, istoricul prețurilor).
+
+Când încarci la un siloz, lista tipurilor de umplere arată doar mărfurile aflate efectiv în stoc.
+
+În fila Inventar (meniul Esc), bara de jos:
+- Ascunde / afișează locul selectat: buton jos (acțiunea „Meniu Extra 2”, tastatură și controler conform Comenzilor)
+- Afișează / ascunde locurile ascunse: buton jos (acțiunea „Meniu Extra 3”)
+Locurile ascunse se salvează pentru fiecare jucător.
+
+Sursă deschisă: https://github.com/DTM-Mods/FS25_FarmInventory]]></ro>
+        <sv><![CDATA[Lägger till en flik "Lager" bredvid "Priser" i prismenyn. Den visar bara varorna som din gård har lagrat, grupperade efter var de förvaras: varje silo (siloutbyggnader inräknade), foderrobot, plansilo, produktion (varorna den tillverkar) och djurfålla får en egen rubrik med mängden av varje vara. Foderrobotar visar varje behållare som lager / kapacitet. All marknadsinformation finns kvar (försäljningsställen, priser, prishistorik).
+
+När du lastar vid en silo visar listan med fyllnadstyper bara varor som faktiskt finns i lager.
+
+På fliken Lager (Esc-menyn), nedre fältet:
+- Dölj / visa vald plats: knapp längst ner (åtgärden "Meny Extra 2", tangentbord och handkontroll enligt Kontroller)
+- Visa / dölj dolda platser: knapp längst ner (åtgärden "Meny Extra 3")
+Dolda platser sparas per spelare.
+
+Öppen källkod: https://github.com/DTM-Mods/FS25_FarmInventory]]></sv>
+        <da><![CDATA[Tilføjer en fane "Lager" ved siden af "Priser" i prismenuen. Den viser kun de varer, din gård har på lager, grupperet efter hvor de opbevares: hver silo (siloudvidelser medregnet), foderrobot, plansilo, produktion (de varer den laver) og dyrefold får sin egen overskrift med mængden af hver vare. Foderrobotter viser hver beholder som lager / kapacitet. Al markedsinformation bevares (salgssteder, priser, prishistorik).
+
+Når du læsser ved en silo, viser listen over fyldtyper kun varer, der faktisk er på lager.
+
+På fanen Lager (Esc-menuen), nederste bjælke:
+- Skjul / vis valgt sted: knap nederst (handlingen "Menu Ekstra 2", tastatur og controller ifølge Styring)
+- Vis / skjul skjulte steder: knap nederst (handlingen "Menu Ekstra 3")
+Skjulte steder gemmes pr. spiller.
+
+Open source: https://github.com/DTM-Mods/FS25_FarmInventory]]></da>
+        <no><![CDATA[Legger til en fane "Lager" ved siden av "Priser" i prismenyen. Den viser bare varene gården din har lagret, gruppert etter hvor de oppbevares: hver silo (siloutvidelser inkludert), fôringsrobot, plansilo, produksjon (varene den lager) og dyrebinge får sin egen overskrift med mengden av hver vare. Fôringsroboter viser hver beholder som lager / kapasitet. All markedsinformasjon blir værende (salgssteder, priser, prishistorikk).
+
+Når du laster ved en silo, viser listen over fylltyper bare varer som faktisk er på lager.
+
+På fanen Lager (Esc-menyen), nederste linje:
+- Skjul / vis valgt sted: knapp nederst (handlingen "Meny Ekstra 2", tastatur og kontroller etter Kontroller)
+- Vis / skjul skjulte steder: knapp nederst (handlingen "Meny Ekstra 3")
+Skjulte steder lagres per spiller.
+
+Åpen kildekode: https://github.com/DTM-Mods/FS25_FarmInventory]]></no>
+        <fi><![CDATA[Lisää hintavalikkoon "Hinnat"-välilehden viereen "Varasto"-välilehden. Se näyttää vain tilasi varastoimat tuotteet säilytyspaikan mukaan ryhmiteltyinä: jokainen siilo (laajennukset mukaan lukien), ruokintarobotti, laakasiilo, tuotantolaitos (sen valmistamat tuotteet) ja eläinkarsina saa oman otsikkonsa, jossa näkyy kunkin tuotteen määrä. Ruokintarobotit näyttävät jokaisen säiliön muodossa varasto / kapasiteetti. Kaikki markkinatiedot säilyvät (myyntipisteet, hinnat, hintahistoria).
+
+Kun lastaat siilolta, täyttötyyppien luettelo näyttää vain tuotteet, joita todella on varastossa.
+
+Varasto-välilehdellä (Esc-valikko), alapalkki:
+- Piilota / näytä valittu paikka: alapalkin painike (toiminto "Valikko Extra 2", näppäimistö ja ohjain Ohjaus-asetusten mukaan)
+- Näytä / piilota piilotetut paikat: alapalkin painike (toiminto "Valikko Extra 3")
+Piilotetut paikat tallennetaan pelaajakohtaisesti.
+
+Avoin lähdekoodi: https://github.com/DTM-Mods/FS25_FarmInventory]]></fi>
+        <jp><![CDATA[価格メニューの「価格」の隣に「在庫」タブを追加します。農場が保管している品物だけを保管場所ごとに表示します：各サイロ（サイロ拡張を含む）、給餌ロボット、バンカーサイロ、生産施設（生産する品物）、動物の囲いにそれぞれ見出しが付き、各品物の量が表示されます。給餌ロボットは各容器を「在庫 / 容量」で表示します。市場情報（販売所、価格、価格履歴）はすべてそのまま残ります。
+
+サイロで積み込むとき、充填タイプの一覧には実際に在庫がある品物だけが表示されます。
+
+在庫タブ（Escメニュー）の下部バー：
+- 選択した場所を非表示 / 表示：下部のボタン（「メニュー エクストラ 2」アクション、キーボードとコントローラーは操作設定に従う）
+- 非表示の場所を表示 / 非表示：下部のボタン（「メニュー エクストラ 3」アクション）
+非表示にした場所はプレイヤーごとに保存されます。
+
+オープンソース： https://github.com/DTM-Mods/FS25_FarmInventory]]></jp>
+        <kr><![CDATA[가격 메뉴의 "가격" 옆에 "재고" 탭을 추가합니다. 농장에 저장된 물품만 보관 장소별로 묶어서 보여 줍니다. 각 사일로(사일로 확장 포함), 급이 로봇, 벙커 사일로, 생산 시설(생산하는 물품), 동물 우리마다 제목이 붙고 각 물품의 양이 표시됩니다. 급이 로봇은 각 통을 저장량 / 용량으로 보여 줍니다. 시장 정보(판매처, 가격, 가격 기록)는 모두 그대로 남습니다.
+
+사일로에서 적재할 때 적재 유형 목록에는 실제로 재고가 있는 물품만 표시됩니다.
+
+재고 탭(Esc 메뉴) 하단 바:
+- 선택한 장소 숨기기 / 표시: 하단 버튼("메뉴 추가 2" 동작, 키보드와 컨트롤러는 조작 설정에 따름)
+- 숨긴 장소 표시 / 숨기기: 하단 버튼("메뉴 추가 3" 동작)
+숨긴 장소는 플레이어별로 저장됩니다.
+
+오픈 소스: https://github.com/DTM-Mods/FS25_FarmInventory]]></kr>
+        <ct><![CDATA[在價格選單的「價格」旁新增「庫存」分頁。只列出你的農場儲存的貨物，並依存放地點分組：每座筒倉（含筒倉擴充）、餵食機器人、壕溝筒倉、生產設施（其生產的貨物）和動物圍欄都有各自的標題，並顯示每種貨物的數量。餵食機器人以「存量 / 容量」顯示每個料槽。所有市場資訊都保留（銷售點、價格、價格歷史）。
+
+在筒倉裝載時，填充類型清單只會顯示確實有庫存的貨物。
+
+庫存分頁（Esc 選單）底部列：
+- 隱藏 / 顯示所選地點：底部按鈕（「選單額外 2」動作，鍵盤和控制器依操作設定）
+- 顯示 / 隱藏已隱藏的地點：底部按鈕（「選單額外 3」動作）
+已隱藏的地點會依玩家分別儲存。
+
+開放原始碼： https://github.com/DTM-Mods/FS25_FarmInventory]]></ct>
+        <cs><![CDATA[在价格菜单的“价格”旁新增“库存”标签页。只列出你的农场储存的货物，并按存放地点分组：每座筒仓（含筒仓扩展）、喂料机器人、青贮窖、生产设施（其生产的货物）和动物围栏都有各自的标题，并显示每种货物的数量。喂料机器人以“存量 / 容量”显示每个料槽。所有市场信息都保留（销售点、价格、价格历史）。
+
+在筒仓装载时，填充类型列表只显示确实有库存的货物。
+
+库存标签页（Esc 菜单）底部栏：
+- 隐藏 / 显示所选地点：底部按钮（“菜单额外 2”操作，键盘和手柄按操作设置）
+- 显示 / 隐藏已隐藏的地点：底部按钮（“菜单额外 3”操作）
+已隐藏的地点按玩家分别保存。
+
+开源： https://github.com/DTM-Mods/FS25_FarmInventory]]></cs>
+        <id><![CDATA[Menambahkan tab "Inventaris" di samping "Harga" pada menu harga. Tab ini hanya menampilkan barang yang disimpan peternakan Anda, dikelompokkan menurut tempat penyimpanannya: setiap silo (termasuk perluasan silo), robot pakan, silo bunker, produksi (barang yang dibuatnya) dan kandang hewan mendapat judul sendiri, beserta jumlah setiap barang. Robot pakan menampilkan setiap wadah sebagai stok / kapasitas. Semua informasi pasar tetap ada (titik penjualan, harga, riwayat harga).
+
+Saat memuat di silo, daftar jenis isian hanya menampilkan barang yang benar-benar tersedia.
+
+Di tab Inventaris (menu Esc), bilah bawah:
+- Sembunyikan / tampilkan lokasi terpilih: tombol bawah (aksi "Menu Ekstra 2", keyboard dan kontroler sesuai Kontrol)
+- Tampilkan / sembunyikan lokasi tersembunyi: tombol bawah (aksi "Menu Ekstra 3")
+Lokasi tersembunyi disimpan per pemain.
+
+Sumber terbuka: https://github.com/DTM-Mods/FS25_FarmInventory]]></id>
+        <vi><![CDATA[Thêm thẻ "Kho hàng" bên cạnh "Giá" trong menu giá. Thẻ này chỉ liệt kê hàng hóa mà trang trại của bạn đang lưu trữ, nhóm theo nơi cất giữ: mỗi silo (kể cả phần mở rộng silo), robot cho ăn, silo hầm, cơ sở sản xuất (hàng hóa nó làm ra) và chuồng vật nuôi có tiêu đề riêng, kèm số lượng từng loại hàng. Robot cho ăn hiển thị từng thùng dưới dạng tồn kho / sức chứa. Mọi thông tin thị trường vẫn giữ nguyên (điểm bán, giá, lịch sử giá).
+
+Khi nạp hàng tại silo, danh sách loại hàng chỉ hiện những hàng thực sự còn trong kho.
+
+Trong thẻ Kho hàng (menu Esc), thanh dưới:
+- Ẩn / hiện vị trí đã chọn: nút ở thanh dưới (thao tác "Menu Thêm 2", bàn phím và tay cầm theo cài đặt Điều khiển)
+- Hiện / ẩn các vị trí đã ẩn: nút ở thanh dưới (thao tác "Menu Thêm 3")
+Các vị trí đã ẩn được lưu riêng cho từng người chơi.
+
+Mã nguồn mở: https://github.com/DTM-Mods/FS25_FarmInventory]]></vi>
     </description>
 
     <multiplayer supported="true" />
