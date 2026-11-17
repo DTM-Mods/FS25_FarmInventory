@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <modDesc descVersion="116">
     <author>DTM Mods, PropaineX</author>
-    <version>1.0.0.1</version>
+    <version>1.0.0.2</version>
 
     <title>
         <en>Farm Inventory Pro Edition</en>
@@ -16,8 +16,8 @@ Each silo (silo extensions included), bunker silo, production (the goods it make
 
 When you fill up at a silo, the fill type list only shows goods that are actually in stock.
 
-Changelog 1.0.0.1:
-- Updated for the current game version (modDesc version 116).]]></en>
+Changelog 1.0.0.2:
+- Description in GIANTS' ModHub layout (category, price, upkeep or hotkeys at the top).]]></en>
         <de><![CDATA[Beschreibung: Fügt dem Preise-Menü einen Reiter "Inventory" hinzu, der die von deinem Hof gelagerten Waren nach ihrem Lagerort gruppiert auflistet, neben den üblichen Marktinformationen.
 Tastenkombinationen: keine eigenen. Öffne das Preise-Menü und wähle den Reiter INVENTORY. HIDE (nimmt einen Lagerort aus der Liste) und SHOW HIDDEN (holt ihn zurück) sind Schaltflächen in der Tastenleiste des Menüs, auf den dort angezeigten freien Menütasten (Tastatur und Controller).
 GitHub: https://github.com/DTM-Mods/FS25_FarmInventory
@@ -26,8 +26,8 @@ Jedes Silo (Siloerweiterungen eingeschlossen), jedes Fahrsilo, jede Produktion (
 
 Wenn du an einem Silo befüllst, zeigt die Liste der Füllarten nur Waren, die wirklich vorrätig sind.
 
-Changelog 1.0.0.1:
-- An die aktuelle Spielversion angepasst (modDesc-Version 116).]]></de>
+Changelog 1.0.0.2:
+- Beschreibung im ModHub-Aufbau von GIANTS (Kategorie, Preis, Unterhalt bzw. Tasten oben).]]></de>
     </description>
 
     <multiplayer supported="true" />
