@@ -35,65 +35,35 @@ Inventaire de la ferme Plus
 
 ## Description English
 ```text
-Adds an INVENTORY tab next to PRICES in the Prices menu. It lists the goods your farm has stored, grouped by where they are kept, with the normal market information next to it: selling stations, prices and price history. See at a glance what each silo, tank, production and animal pen holds, and where to sell it.
+Description: Adds an "Inventory" tab to the Prices menu that lists the goods your farm has stored, grouped by where they are kept, next to the usual market information.
+Hotkeys: none of its own. Open the Prices menu and select the INVENTORY tab. HIDE (takes a location off the list) and SHOW HIDDEN (brings it back) are buttons in the menu's button bar, on the free menu keys shown there (keyboard and controller).
+GitHub: https://github.com/DTM-Mods/FS25_FarmInventory
 
-- SILO: each silo, with its silo extensions added in. Liquid storage such as milk, water or diesel comes right after the dry silos.
-- FEEDING ROBOT: every bin, shown as stored / capacity.
-- BUNKER SILO: each bunker silo.
-- PRODUCTION: the goods a production makes (inputs are not listed).
-- ANIMALS: what is in an animal pen's storage, such as milk or manure.
-- HIDE takes a whole location off the list, SHOW HIDDEN brings it back. Your hidden list is saved per player.
-- At a silo's fill trigger, the fill type list only shows goods that are actually in stock.
-- Works in single player and multiplayer.
+Each silo (silo extensions included), bunker silo, production (the goods it makes) and animal pen gets its own heading, with how much of each good is there. Full market information stays (stations, prices, price history).
 
-How to use: open the Prices menu and select the INVENTORY tab.
-
-Changelog 0.7.2.0:
-- Closing the menu from the INVENTORY tab no longer lags, and Esc only needs one press.
-- The mouse wheel scrolls the list again.
-- The HIDE / SHOW HIDDEN buttons now show up on the INVENTORY tab.
+When you fill up at a silo, the fill type list only shows goods that are actually in stock.
 ```
 
 ## Description German
 ```text
-Fügt im Preise-Menü neben PREISE einen Reiter INVENTORY hinzu. Er listet die Waren, die dein Hof gelagert hat, sortiert nach Lagerort, mit den normalen Marktinfos daneben: Verkaufsstellen, Preise und Preisverlauf. So siehst du auf einen Blick, was in jedem Silo, Tank, jeder Produktion und jedem Tierstall liegt und wo du es verkaufen kannst.
+Beschreibung: Fügt dem Preise-Menü einen Reiter "Inventory" hinzu, der die von deinem Hof gelagerten Waren nach ihrem Lagerort gruppiert auflistet, neben den üblichen Marktinformationen.
+Tastenkombinationen: keine eigenen. Öffne das Preise-Menü und wähle den Reiter INVENTORY. HIDE (nimmt einen Lagerort aus der Liste) und SHOW HIDDEN (holt ihn zurück) sind Schaltflächen in der Tastenleiste des Menüs, auf den dort angezeigten freien Menütasten (Tastatur und Controller).
+GitHub: https://github.com/DTM-Mods/FS25_FarmInventory
 
-- SILO: jedes Silo, mit seinen Siloerweiterungen zusammengezählt. Flüssigkeitslager wie Milch, Wasser oder Diesel folgen direkt nach den Silos.
-- FEEDING ROBOT: jeder Behälter des Fütterungsroboters als Bestand / Kapazität.
-- BUNKER SILO: jedes Fahrsilo.
-- PRODUCTION: die Waren, die eine Produktion herstellt (Zutaten werden nicht gelistet).
-- ANIMALS: was im Lager eines Tierstalls liegt, etwa Milch oder Mist.
-- HIDE blendet einen ganzen Lagerort aus, SHOW HIDDEN holt ihn zurück. Die Liste gilt pro Spieler.
-- Am Befülltrigger eines Silos zeigt die Liste der Fülltypen nur Waren, die wirklich vorrätig sind.
-- Funktioniert im Einzel- und Mehrspielermodus.
+Jedes Silo (Siloerweiterungen eingeschlossen), jedes Fahrsilo, jede Produktion (die Waren, die sie herstellt) und jedes Tiergehege bekommt eine eigene Überschrift, mit der Menge jeder Ware dort. Die vollständigen Marktinformationen bleiben erhalten (Verkaufsstellen, Preise, Preisverlauf).
 
-So geht's: Preise-Menü öffnen und den Reiter INVENTORY wählen.
-
-Changelog 0.7.2.0:
-- Das Schließen des Menüs aus dem Reiter INVENTORY ruckelt nicht mehr, Esc reicht einmal.
-- Das Mausrad scrollt die Liste wieder.
-- Die Schaltflächen HIDE / SHOW HIDDEN erscheinen jetzt im Reiter INVENTORY.
+Wenn du an einem Silo befüllst, zeigt die Liste der Füllarten nur Waren, die wirklich vorrätig sind.
 ```
 
 ## Description French
 ```text
-Ajoute un onglet INVENTORY à côté de PRIX dans le menu des prix. Il liste les marchandises stockées par votre ferme, regroupées par lieu de stockage, avec les informations de marché habituelles : points de vente, prix et historique des prix. Vous voyez d'un coup d'œil ce que contient chaque silo, cuve, production et enclos, et où le vendre.
+Description : ajoute un onglet « Inventory » au menu des prix, qui liste les marchandises stockées par votre ferme, regroupées par lieu de stockage, à côté des informations de marché habituelles.
+Raccourcis clavier : aucun en propre. Ouvrez le menu des prix et choisissez l'onglet INVENTORY. HIDE (retire un lieu de la liste) et SHOW HIDDEN (le fait réapparaître) sont des boutons de la barre de boutons du menu, sur les touches de menu libres qui y sont affichées (clavier et manette).
+GitHub : https://github.com/DTM-Mods/FS25_FarmInventory
 
-- SILO : chaque silo, avec ses extensions de silo additionnées. Les stockages de liquides comme le lait, l'eau ou le diesel suivent directement les silos.
-- FEEDING ROBOT : chaque bac du robot d'alimentation, affiché en stock / capacité.
-- BUNKER SILO : chaque silo couloir.
-- PRODUCTION : les marchandises qu'une production fabrique (les intrants ne sont pas listés).
-- ANIMALS : le contenu du stockage d'un enclos, comme le lait ou le fumier.
-- HIDE masque un lieu entier, SHOW HIDDEN le fait réapparaître. La liste est enregistrée par joueur.
-- Au point de chargement d'un silo, la liste des types de remplissage n'affiche que les marchandises en stock.
-- Fonctionne en solo et en multijoueur.
+Chaque silo (extensions de silo comprises), silo couloir, production (les marchandises qu'elle fabrique) et enclos a son propre titre, avec la quantité de chaque marchandise qui s'y trouve. Les informations de marché complètes restent (points de vente, prix, historique des prix).
 
-Utilisation : ouvrez le menu des prix et choisissez l'onglet INVENTORY.
-
-Changelog 0.7.2.0 :
-- Fermer le menu depuis l'onglet INVENTORY ne provoque plus de ralentissement, et une seule pression sur Échap suffit.
-- La molette de la souris fait de nouveau défiler la liste.
-- Les boutons HIDE / SHOW HIDDEN apparaissent maintenant dans l'onglet INVENTORY.
+Quand vous chargez à un silo, la liste des types de remplissage n'affiche que les marchandises réellement en stock.
 ```
 
 ## Before uploading

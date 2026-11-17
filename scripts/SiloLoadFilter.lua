@@ -8,6 +8,7 @@
 SiloLoadFilter = {}
 SiloLoadFilter.TAG = "[SiloLoadFilter]"
 SiloLoadFilter.MIN_LEVEL = 0.5 -- liters; smaller residues show as "0 l" in the list
+SiloLoadFilter.swaps = {}      -- {source, ownField} of every swap in place (only while toggleLoading runs)
 
 -- Returns only the entries with stock, or the full table when nothing is in stock (so the
 -- game's own empty-silo behaviour is unchanged)
@@ -39,21 +40,28 @@ function SiloLoadFilter.toggleLoading(trigger, superFunc, ...)
         return superFunc(trigger, ...)
     end
 
-    -- The original is kept on the source until it is put back, so if the game errors inside
-    -- superFunc (the error still reaches the log), the next call restores the real function
-    -- instead of wrapping the wrapper.
-    if source.sltSaved == nil then
-        source.sltSaved = {own = rawget(source, "getAllFillLevels"), fn = source.getAllFillLevels}
-    end
-    local saved = source.sltSaved
+    local ownField = rawget(source, "getAllFillLevels")
+    local getAllFillLevels = source.getAllFillLevels
+    local swap = {source = source, ownField = ownField}
+    table.insert(SiloLoadFilter.swaps, swap)
     source.getAllFillLevels = function(self, ...)
-        return filterFirst(saved.fn(self, ...))
+        return filterFirst(getAllFillLevels(self, ...))
     end
     local results = {superFunc(trigger, ...)}
-    source.getAllFillLevels = saved.own
-    source.sltSaved = nil
+    source.getAllFillLevels = ownField
+    table.removeElement(SiloLoadFilter.swaps, swap)
 
     return unpack(results, 1, table.maxn(results))
+end
+
+-- Every frame: a swap still in place means toggleLoading stopped with an error (shown in the log),
+-- so the source gets its own getAllFillLevels back. Newest first, in case calls were nested.
+function SiloLoadFilter.restoreLeftovers()
+    local swaps = SiloLoadFilter.swaps
+    for i = #swaps, 1, -1 do
+        swaps[i].source.getAllFillLevels = swaps[i].ownField
+        swaps[i] = nil
+    end
 end
 
 ---------------------------------------------------------------------------------------------
@@ -80,7 +88,14 @@ function SiloLoadFilter:loadMap()
     LoadTrigger.sltHandler = SiloLoadFilter
 end
 
+function SiloLoadFilter:update(dt)
+    if #SiloLoadFilter.swaps > 0 then
+        SiloLoadFilter.restoreLeftovers()
+    end
+end
+
 function SiloLoadFilter:deleteMap()
+    SiloLoadFilter.restoreLeftovers()
     LoadTrigger.sltHandler = nil
 end
 
