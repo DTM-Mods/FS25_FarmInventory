@@ -8,13 +8,21 @@
     </title>
 
     <description>
-        <en><![CDATA[Adds an "Inventory" tab to the Prices menu that lists the goods your farm has stored, grouped by where they are kept: each silo (silo extensions included), bunker silo, production (the goods it makes) and animal pen gets its own heading, with how much of each good is there. Full market information stays (stations, prices, price history).
+        <en><![CDATA[Description: Adds an "Inventory" tab to the Prices menu that lists the goods your farm has stored, grouped by where they are kept, next to the usual market information.
+Hotkeys: none of its own. Open the Prices menu and select the INVENTORY tab. HIDE (takes a location off the list) and SHOW HIDDEN (brings it back) are buttons in the menu's button bar, on the free menu keys shown there (keyboard and controller).
+GitHub: https://github.com/DTM-Mods/FS25_FarmInventory
+
+Each silo (silo extensions included), bunker silo, production (the goods it makes) and animal pen gets its own heading, with how much of each good is there. Full market information stays (stations, prices, price history).
 
 When you fill up at a silo, the fill type list only shows goods that are actually in stock.
 
 Changelog 1.0.0.1:
 - Updated for the current game version (modDesc version 116).]]></en>
-        <de><![CDATA[Fügt dem Preise-Menü einen Reiter "Inventory" hinzu, der die von deinem Hof gelagerten Waren auflistet, gruppiert nach ihrem Lagerort: jedes Silo (Siloerweiterungen eingeschlossen), jedes Fahrsilo, jede Produktion (die Waren, die sie herstellt) und jedes Tiergehege bekommt eine eigene Überschrift, mit der Menge jeder Ware dort. Die vollständigen Marktinformationen bleiben erhalten (Verkaufsstellen, Preise, Preisverlauf).
+        <de><![CDATA[Beschreibung: Fügt dem Preise-Menü einen Reiter "Inventory" hinzu, der die von deinem Hof gelagerten Waren nach ihrem Lagerort gruppiert auflistet, neben den üblichen Marktinformationen.
+Tastenkombinationen: keine eigenen. Öffne das Preise-Menü und wähle den Reiter INVENTORY. HIDE (nimmt einen Lagerort aus der Liste) und SHOW HIDDEN (holt ihn zurück) sind Schaltflächen in der Tastenleiste des Menüs, auf den dort angezeigten freien Menütasten (Tastatur und Controller).
+GitHub: https://github.com/DTM-Mods/FS25_FarmInventory
+
+Jedes Silo (Siloerweiterungen eingeschlossen), jedes Fahrsilo, jede Produktion (die Waren, die sie herstellt) und jedes Tiergehege bekommt eine eigene Überschrift, mit der Menge jeder Ware dort. Die vollständigen Marktinformationen bleiben erhalten (Verkaufsstellen, Preise, Preisverlauf).
 
 Wenn du an einem Silo befüllst, zeigt die Liste der Füllarten nur Waren, die wirklich vorrätig sind.
 
