@@ -957,14 +957,7 @@ function FarmInventory.populateCellForItemInSection(frame, superFunc, list, sect
         return superFunc(frame, list, section, index, cell, ...)
     end
     local location = frame.sptLocations[section]
-    local result = nil
-    if location ~= nil and location.rows ~= nil then
-        -- a feed the game never prices may trip its price code; the amount is written anyway
-        local ok, value = pcall(superFunc, frame, list, section, index, cell, ...)
-        result = ok and value or nil
-    else
-        result = superFunc(frame, list, section, index, cell, ...)
-    end
+    local result = superFunc(frame, list, section, index, cell, ...)
 
     local entries = frame.fillTypes[section]
     local entry = entries ~= nil and entries[index] or nil

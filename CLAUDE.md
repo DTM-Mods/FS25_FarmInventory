@@ -7,7 +7,7 @@ section and writes the stored amount into every row (untested).
 Renamed from SiloPricesTab to MySiloPricesTab on 2026-10-19, then to FarmInventory on 2026-10-29 (v0.5.0.0, names only on top of the 0.4.3.0 code: folder, files, Lua global `FarmInventory`, title "Farm Inventory Pro Edition", tab label "INVENTORY", zip `FS25_FarmInventory.zip`). Plans for the per-location list: see HANDOFF_2026-10-29.md.
 
 ## Files
-- `modDesc.xml` - mod descriptor (descVersion 111). Icon is `icon_farmInventory.dds`.
+- `modDesc.xml` - mod descriptor (descVersion 115). Icon is `icon_farmInventory.dds`.
 - `scripts/FarmInventory.lua` - the INVENTORY prices tab.
 - `scripts/SiloLoadFilter.lua` - (v0.2.0.0) the R fill-type list at a silo/load trigger only shows goods in stock
   (>= 0.5 L). Wraps `LoadTrigger.toggleLoading` and swaps `source.getAllFillLevels` for a filtered version while it

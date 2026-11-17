@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<modDesc descVersion="111">
+<modDesc descVersion="115">
     <author>DTM Mods, PropaineX</author>
-    <version>0.7.2.1</version>
+    <version>1.0.0.0</version>
 
     <title>
         <en>Farm Inventory Pro Edition</en>
@@ -11,6 +11,9 @@
         <en><![CDATA[Adds an "Inventory" tab to the Prices menu that lists the goods your farm has stored, grouped by where they are kept: each silo (silo extensions included), bunker silo, production (the goods it makes) and animal pen gets its own heading, with how much of each good is there. Full market information stays (stations, prices, price history).
 
 When you fill up at a silo, the fill type list only shows goods that are actually in stock.]]></en>
+        <de><![CDATA[Fügt dem Preise-Menü einen Reiter "Inventory" hinzu, der die von deinem Hof gelagerten Waren auflistet, gruppiert nach ihrem Lagerort: jedes Silo (Siloerweiterungen eingeschlossen), jedes Fahrsilo, jede Produktion (die Waren, die sie herstellt) und jedes Tiergehege bekommt eine eigene Überschrift, mit der Menge jeder Ware dort. Die vollständigen Marktinformationen bleiben erhalten (Verkaufsstellen, Preise, Preisverlauf).
+
+Wenn du an einem Silo befüllst, zeigt die Liste der Füllarten nur Waren, die wirklich vorrätig sind.]]></de>
     </description>
 
     <multiplayer supported="true" />

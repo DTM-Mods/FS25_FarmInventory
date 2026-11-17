@@ -8,6 +8,7 @@
 SiloLoadFilter = {}
 SiloLoadFilter.TAG = "[SiloLoadFilter]"
 SiloLoadFilter.MIN_LEVEL = 0.5 -- liters; smaller residues show as "0 l" in the list
+SiloLoadFilter.swaps = {}      -- {source, ownField} of every swap in place (only while toggleLoading runs)
 
 -- Returns only the entries with stock, or the full table when nothing is in stock (so the
 -- game's own empty-silo behaviour is unchanged)
@@ -41,16 +42,26 @@ function SiloLoadFilter.toggleLoading(trigger, superFunc, ...)
 
     local ownField = rawget(source, "getAllFillLevels")
     local getAllFillLevels = source.getAllFillLevels
+    local swap = {source = source, ownField = ownField}
+    table.insert(SiloLoadFilter.swaps, swap)
     source.getAllFillLevels = function(self, ...)
         return filterFirst(getAllFillLevels(self, ...))
     end
-    local results = {pcall(superFunc, trigger, ...)}
+    local results = {superFunc(trigger, ...)}
     source.getAllFillLevels = ownField
+    table.removeElement(SiloLoadFilter.swaps, swap)
 
-    if not results[1] then
-        error(results[2], 0)
+    return unpack(results, 1, table.maxn(results))
+end
+
+-- Every frame: a swap still in place means toggleLoading stopped with an error (shown in the log),
+-- so the source gets its own getAllFillLevels back. Newest first, in case calls were nested.
+function SiloLoadFilter.restoreLeftovers()
+    local swaps = SiloLoadFilter.swaps
+    for i = #swaps, 1, -1 do
+        swaps[i].source.getAllFillLevels = swaps[i].ownField
+        swaps[i] = nil
     end
-    return unpack(results, 2, table.maxn(results))
 end
 
 ---------------------------------------------------------------------------------------------
@@ -77,7 +88,14 @@ function SiloLoadFilter:loadMap()
     LoadTrigger.sltHandler = SiloLoadFilter
 end
 
+function SiloLoadFilter:update(dt)
+    if #SiloLoadFilter.swaps > 0 then
+        SiloLoadFilter.restoreLeftovers()
+    end
+end
+
 function SiloLoadFilter:deleteMap()
+    SiloLoadFilter.restoreLeftovers()
     LoadTrigger.sltHandler = nil
 end
 
