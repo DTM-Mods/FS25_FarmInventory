@@ -1,11 +1,11 @@
-# Builds FS25_FarmInventory.zip into "Testing_local" (move it to mods to test).
+# Builds FS25_FarmInventory.zip into "Local_testing" (move it to mods to test).
 # Usage (from the project folder):  powershell -ExecutionPolicy Bypass -File tools\build.ps1
 # Optional: -ConvertIcon   re-creates icon_farmInventory.dds from icon_farmInventory.png first.
 param([switch]$ConvertIcon)
 $ErrorActionPreference = 'Stop'
 
 $project = Split-Path $PSScriptRoot -Parent
-$dest = Join-Path ([Environment]::GetFolderPath('MyDocuments')) 'My Games\FarmingSimulator2025\Testing_local\FS25_FarmInventory.zip'
+$dest = Join-Path ([Environment]::GetFolderPath('MyDocuments')) 'My Games\FarmingSimulator2025\Local_testing\FS25_FarmInventory.zip'
 $textureTool = 'C:\Program Files\GIANTS Software\GIANTS_Editor_10.0.14\tools\textureTool.exe'
 $files = 'modDesc.xml', 'icon_farmInventory.dds', 'scripts/FarmInventory.lua', 'scripts/SiloLoadFilter.lua', 'translations/l10n_en.xml'
 

@@ -73,7 +73,7 @@ MIT, see [LICENSE](LICENSE).
 ### Building
 
 `powershell -ExecutionPolicy Bypass -File tools\build.ps1` (game must be closed) makes `FS25_FarmInventory.zip`
-in `Testing_local`.
+in `Local_testing`.
 
 The version is in `modDesc.xml`; [PATCH_NOTES.md](PATCH_NOTES.md) has the history.
 

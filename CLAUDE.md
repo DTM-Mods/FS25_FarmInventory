@@ -18,7 +18,7 @@ Renamed from SiloPricesTab to MySiloPricesTab on 2026-10-19, then to FarmInvento
 - `icon_farmInventory.png` - editable icon source (512x512, not shipped). `.dds` is the shipped version.
 - `scripts/SiloPricesDiag.lua` - old diagnostic that dumps `InGameMenuStatisticsFrame` to log.txt
   with `[SPT-DIAG]` prefix. Not shipped; re-enable in modDesc if the menu changes in a game update.
-- `tools/build.ps1` - builds `FS25_FarmInventory.zip` into `Testing_local` (`-ConvertIcon` regenerates the .dds
+- `tools/build.ps1` - builds `FS25_FarmInventory.zip` into `Local_testing` (`-ConvertIcon` regenerates the .dds
   with GIANTS textureTool, BC7 + mips).
 - `tools/make_icons.ps1 -OutDir <dir>` - System.Drawing script that drew the icon options (B was chosen).
 
