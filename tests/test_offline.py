@@ -352,6 +352,20 @@ def missing_game_classes_disable_the_mod_without_error():
 
 
 @test
+def missing_prices_sub_tab_disables_the_tab_without_error():
+    # the class is there but its sub-tab table, or PRICES in it, is gone after a patch
+    for pre in ("InGameMenuStatisticsFrame.SUB_CATEGORY = nil", "InGameMenuStatisticsFrame.SUB_CATEGORY = {VEHICLES = 2}"):
+        lua = new_lua(pre="GAME_OPEN = InGameMenuStatisticsFrame.onFrameOpen; " + pre)
+        run(lua, r'''
+        ok(logHas("InGameMenuStatisticsFrame.SUB_CATEGORY.PRICES not available, tab disabled"), "no log line for the missing sub-tab")
+        ok(#LISTENERS == 1 and LISTENERS[1] == SiloLoadFilter, "only the load filter listens")
+        ok(InGameMenuStatisticsFrame.onFrameOpen == GAME_OPEN and not InGameMenuStatisticsFrame.sptHooksInstalled, "frame hooked anyway")
+        standardFarm()
+        eq(#FarmInventory.getOwnLocations(1), 6, "locations")
+        ''')
+
+
+@test
 def missing_list_function_is_logged_and_the_rest_still_hooks():
     lua = new_lua(pre="InGameMenuStatisticsFrame.populateCellForItemInSection = nil; InGameMenuStatisticsFrame.onFrameOpen = nil")
     run(lua, r'''
@@ -465,6 +479,22 @@ def silo_extension_counts_toward_its_silo():
     eq(locations[1].levels[FT.WHEAT], 150, "wheat of silo and extension")
     eq(locations[1].levels[FT.CANOLA], 7, "canola only in the extension")
     eq(locations[2].levels[FT.BARLEY], 5, "unconnected extension")
+    ''')
+
+
+@test
+def silo_with_only_one_station_still_takes_its_extension():
+    run(new_lua(), r'''
+    local unload, load = {}, {}
+    placeable({name = "Unload Silo", spec_silo = {storages = {storage({[FT.WHEAT] = 100})}, unloadingStation = unload}})
+    placeable({name = "Extension A", spec_siloExtension = {storage = {fillLevels = {[FT.WHEAT] = 50}, unloadingStations = {[unload] = unload}}}})
+    placeable({name = "Load Silo", spec_silo = {storages = {storage({[FT.BARLEY] = 10})}, loadingStation = load}})
+    placeable({name = "Extension B", spec_siloExtension = {storage = {fillLevels = {[FT.BARLEY] = 5}, loadingStations = {[load] = load}}}})
+    placeable({name = "Bare Silo", spec_silo = {storages = {storage({[FT.CANOLA] = 1})}}})      -- no station at all
+    local locations = FarmInventory.getOwnLocations(1)
+    eq(names(locations), "silo:Unload Silo, silo:Load Silo, silo:Bare Silo", "locations")
+    eq(locations[1].levels[FT.WHEAT], 150, "wheat of the silo without a loading station and its extension")
+    eq(locations[2].levels[FT.BARLEY], 15, "barley of the silo without an unloading station and its extension")
     ''')
 
 
@@ -669,6 +699,33 @@ def feeding_robot_cell_shows_level_and_capacity_without_prices():
     ''')
 
 
+@test
+def robot_bin_with_a_fill_type_the_game_does_not_know_is_left_out():
+    run(new_lua(), r'''
+    -- 77 is in neither the price list nor the fill type manager (a mod that was removed)
+    placeable({name = "Barn", spec_husbandryFeedingRobot = {feedingRobot = {unloadingSpots = {
+        {fillType = FT.SILAGE, fillLevel = 1, capacity = 10}, {fillType = 77, fillLevel = 2, capacity = 20},
+        {fillType = FT.HAY, fillLevel = 3, capacity = 30}, {fillType = FT.TMR, fillLevel = 4, capacity = 40}}}}})
+    local frame = openInventory()
+    local list = frame.productList
+    eq(sections(frame), "SILAGE,HAY,TMR", "rows")
+    eq(frame:getNumberOfItemsInSection(list, 1), 3, "rows served")
+    eq(#frame.sptLocations[1].rows, 3, "bins kept in step with the rows")
+    -- every row shows its own bin
+    for index, expected in ipairs({"1 / 10 l", "3 / 30 l", "4 / 40 l"}) do
+        local cell = el({elements = {txt(frame.fillTypes[1][index].title), txt("-"), txt("450")}})
+        frame:populateCellForItemInSection(list, 1, index, cell)
+        eq(cell.elements[2].text, expected, "amount of row " .. index)
+        eq(cell.elements[3].text, "", "price of row " .. index)
+    end
+    -- a robot with only unknown bins has no section
+    g_currentMission.placeableSystem.placeables = {}
+    placeable({name = "Barn", spec_husbandryFeedingRobot = {feedingRobot = {unloadingSpots = {{fillType = 77, fillLevel = 2, capacity = 20}}}}})
+    FarmInventory.refresh(frame)
+    eq(#frame.fillTypes, 0, "sections with only an unknown bin")
+    ''')
+
+
 # ----------------------------------------------------------------------------------------------- tab, activation
 @test
 def setup_adds_one_inventory_tab_next_to_prices():
@@ -843,14 +900,16 @@ def station_mode_accepted_goods_are_limited_to_stock():
     fire("loadMap", "map")
     local frame = newFrame()
     local unknown = {title = "?"}
-    frame.currentAcceptedFillTypes = {ft("WHEAT"), ft("CANOLA"), ft("FLOUR"), unknown, ft("CHAFF")}
+    -- barley: 0.4 l in the silo, under MIN_LEVEL, so it is no more "in stock" here than in the list
+    frame.currentAcceptedFillTypes = {ft("WHEAT"), ft("CANOLA"), ft("BARLEY"), ft("FLOUR"), unknown, ft("CHAFF"), ft("MILK")}
     frame:updateAcceptedFillTypes()
-    eq(#frame.currentAcceptedFillTypes, 5, "accepted goods while the tab is off")
+    eq(#frame.currentAcceptedFillTypes, 7, "accepted goods while the tab is off")
     frame:onFrameOpen(); frame.sptTab.onClickCallback()
     local reloads = calls("reloadData")
     frame:updateAcceptedFillTypes()
     local accepted = frame.currentAcceptedFillTypes
-    ok(#accepted == 3 and accepted[1] == ft("WHEAT") and accepted[2] == ft("FLOUR") and accepted[3] == unknown, "accepted goods in stock")
+    ok(#accepted == 4 and accepted[1] == ft("WHEAT") and accepted[2] == ft("FLOUR") and accepted[3] == unknown
+        and accepted[4] == ft("MILK"), "accepted goods in stock: " .. #accepted)
     eq(calls("reloadData"), reloads + 1, "price list reload")
     frame.currentAcceptedFillTypes = nil
     frame:updateAcceptedFillTypes()                                -- no station selected: no error

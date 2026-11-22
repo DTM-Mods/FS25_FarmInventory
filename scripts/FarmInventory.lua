@@ -11,7 +11,9 @@ FarmInventory = {}
 FarmInventory.TAG = "[FarmInventory]"
 FarmInventory.EMPTY_STATE_HIDDEN = {"priceList", "priceListSliderBox", "fluctuationsLayoutBg", "fluctuationsContainer", "noFluctuationsText"}
 
-local PRICES = InGameMenuStatisticsFrame ~= nil and InGameMenuStatisticsFrame.SUB_CATEGORY.PRICES or 1
+-- nil when the game's frame has no PRICES sub-tab (any more): the tab is then left off, see the end of this file
+local SUB_CATEGORY = InGameMenuStatisticsFrame ~= nil and InGameMenuStatisticsFrame.SUB_CATEGORY or nil
+local PRICES = type(SUB_CATEGORY) == "table" and SUB_CATEGORY.PRICES or nil
 
 local function getEntryFillTypeIndex(entry)
     if type(entry) == "number" then
@@ -228,7 +230,8 @@ function FarmInventory.getOwnLocations(farmId)
                 for _, storage in ipairs(siloSpec.storages or {}) do
                     addStorage(location, storage)
                 end
-                for _, station in ipairs({siloSpec.loadingStation, siloSpec.unloadingStation}) do
+                -- pairs: ipairs would stop at a missing loading station and leave the unloading station out
+                for _, station in pairs({siloSpec.loadingStation, siloSpec.unloadingStation}) do
                     siloByStation[station] = location
                 end
                 table.insert(silos, location)
@@ -415,6 +418,8 @@ function FarmInventory.applyFilter(frame)
         end
         if location.rows ~= nil then
             -- feeding robot: every bin in bin order, empty ones too; a feed the price list doesn't have uses its fill type
+            -- a bin whose fill type the game doesn't know is left out, of the rows too (rows[i] belongs to entries[i])
+            local rows = {}
             for _, row in ipairs(location.rows) do
                 local entry = nil
                 for _, gameEntries in ipairs(full) do
@@ -424,8 +429,13 @@ function FarmInventory.applyFilter(frame)
                         end
                     end
                 end
-                table.insert(entries, entry or g_fillTypeManager:getFillTypeByIndex(row.fillTypeIndex))
+                entry = entry or g_fillTypeManager:getFillTypeByIndex(row.fillTypeIndex)
+                if entry ~= nil then
+                    table.insert(entries, entry)
+                    table.insert(rows, row)
+                end
             end
+            location.rows = rows
         end
         for _, gameEntries in ipairs((location.rows == nil and not location.skip) and full or {}) do
             for _, entry in ipairs(gameEntries) do
@@ -858,7 +868,7 @@ function FarmInventory.onUpdateAcceptedFillTypes(frame)
     local levels = FarmInventory.getOwnFillLevels(getPlayerFarmId(frame))
     for i = #accepted, 1, -1 do
         local fillTypeIndex = getEntryFillTypeIndex(accepted[i])
-        if fillTypeIndex ~= nil and (levels[fillTypeIndex] or 0) <= 0 then
+        if fillTypeIndex ~= nil and (levels[fillTypeIndex] or 0) < FarmInventory.MIN_LEVEL then
             table.remove(accepted, i)
         end
     end
@@ -1065,9 +1075,11 @@ function FarmInventory:deleteMap()
     end
 end
 
-if InGameMenuStatisticsFrame ~= nil then
+if InGameMenuStatisticsFrame ~= nil and PRICES ~= nil then
     installFrameHooks()
     addModEventListener(FarmInventory)
+elseif InGameMenuStatisticsFrame ~= nil then
+    print(FarmInventory.TAG .. " InGameMenuStatisticsFrame.SUB_CATEGORY.PRICES not available, tab disabled")
 else
     print(FarmInventory.TAG .. " InGameMenuStatisticsFrame not available, tab disabled")
 end

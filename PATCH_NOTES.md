@@ -4,6 +4,14 @@
 
 # Patch notes
 
+## 1.0.0.4
+
+- Fix: a silo extension attached to a silo that has only an unloading point (or only a loading point) is counted into that silo instead of showing as a separate silo.
+- Fix: feeding robot: a bin holding a feed type the game no longer knows (for example from a removed mod) is left out, and the other bins no longer show the wrong amounts.
+- Fix: Show Stations no longer lists goods of which only a residue under half a litre is left, same as the inventory list.
+- If a game update changes the Prices menu, the mod switches its Inventory tab off with a log line instead of causing a script error while loading.
+- Offline tests (`tests/test_offline.py`, 31 tests), run by every build.
+
 ## 1.0.0.3
 
 - Description in all 27 game languages (GIANTS ModHub layout).

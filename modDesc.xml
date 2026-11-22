@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <modDesc descVersion="116">
     <author>DTM Mods, PropaineX</author>
-    <version>1.0.0.3</version>
+    <version>1.0.0.4</version>
 
     <title>
         <en>Farm Inventory Plus</en>
@@ -16,8 +16,10 @@ Each silo (silo extensions included), bunker silo, production (the goods it make
 
 When you fill up at a silo, the fill type list only shows goods that are actually in stock.
 
-Changelog 1.0.0.3:
-- Description in all 27 game languages; title Farm Inventory Plus.]]></en>
+Changelog 1.0.0.4:
+- Fixed: a silo extension on a silo with only one loading or unloading point showed as a separate silo.
+- Fixed: feeding robot bins showed wrong amounts when one bin held an unknown feed type.
+- Show Stations leaves out goods with only a residue left.]]></en>
         <de><![CDATA[Beschreibung: Fügt dem Preise-Menü einen Reiter "Inventory" hinzu, der die von deinem Hof gelagerten Waren nach ihrem Lagerort gruppiert auflistet, neben den üblichen Marktinformationen.
 Tastenkombinationen: keine eigenen. Öffne das Preise-Menü und wähle den Reiter INVENTORY. HIDE (nimmt einen Lagerort aus der Liste) und SHOW HIDDEN (holt ihn zurück) sind Schaltflächen in der Tastenleiste des Menüs, auf den dort angezeigten freien Menütasten (Tastatur und Controller).
 GitHub: https://github.com/DTM-Mods/FS25_FarmInventory
@@ -26,8 +28,10 @@ Jedes Silo (Siloerweiterungen eingeschlossen), jedes Fahrsilo, jede Produktion (
 
 Wenn du an einem Silo befüllst, zeigt die Liste der Füllarten nur Waren, die wirklich vorrätig sind.
 
-Changelog 1.0.0.3:
-- Beschreibung in allen 27 Sprachen des Spiels; Titel Farm Inventory Plus.]]></de>
+Changelog 1.0.0.4:
+- Behoben: Eine Silo-Erweiterung an einem Silo mit nur einer Be- oder Entladestelle wurde als eigenes Silo angezeigt.
+- Behoben: Futterroboter zeigte falsche Mengen, wenn ein Behälter eine unbekannte Futterart enthielt.
+- Stationen anzeigen lässt Waren aus, von denen nur ein Rest übrig ist.]]></de>
         <fr><![CDATA[Description : ajoute au menu des prix un onglet "Inventory" qui liste les marchandises stockées par votre ferme, regroupées par lieu de stockage, à côté des informations de marché habituelles.
 Raccourcis : aucun. Ouvrez le menu des prix et choisissez l'onglet INVENTORY. HIDE (retire un lieu de la liste) et SHOW HIDDEN (le fait revenir) sont des boutons de la barre de boutons du menu, sur les touches de menu libres affichées (clavier et manette).
 GitHub: https://github.com/DTM-Mods/FS25_FarmInventory
@@ -36,8 +40,8 @@ Chaque silo (extensions de silo comprises), silo couloir, production (les produi
 
 Quand vous chargez à un silo, la liste des types de remplissage n'affiche que les marchandises réellement en stock.
 
-Changelog 1.0.0.3:
-- Description dans les 27 langues du jeu ; titre Farm Inventory Plus.]]></fr>
+Changelog 1.0.0.4:
+- Corrections de bugs.]]></fr>
         <fc><![CDATA[Description : ajoute au menu des prix un onglet "Inventory" qui liste les marchandises entreposées par votre ferme, regroupées par lieu d'entreposage, à côté des informations de marché habituelles.
 Raccourcis : aucun. Ouvrez le menu des prix et choisissez l'onglet INVENTORY. HIDE (retire un lieu de la liste) et SHOW HIDDEN (le fait revenir) sont des boutons de la barre de boutons du menu, sur les touches de menu libres affichées (clavier et manette).
 GitHub: https://github.com/DTM-Mods/FS25_FarmInventory
@@ -46,8 +50,8 @@ Chaque silo (extensions de silo comprises), silo-fosse, production (les produits
 
 Quand vous chargez à un silo, la liste des types de remplissage n'affiche que les marchandises réellement en stock.
 
-Changelog 1.0.0.3:
-- Description dans les 27 langues du jeu ; titre Farm Inventory Plus.]]></fc>
+Changelog 1.0.0.4:
+- Corrections de bugs.]]></fc>
         <es><![CDATA[Descripción: añade al menú de precios una pestaña "Inventory" que muestra los productos almacenados por tu granja, agrupados por dónde se guardan, junto a la información de mercado habitual.
 Teclas: ninguna propia. Abre el menú de precios y elige la pestaña INVENTORY. HIDE (quita una ubicación de la lista) y SHOW HIDDEN (la recupera) son botones de la barra de botones del menú, en las teclas de menú libres que se muestran (teclado y mando).
 GitHub: https://github.com/DTM-Mods/FS25_FarmInventory
@@ -56,8 +60,8 @@ Cada silo (ampliaciones incluidas), silo búnker, producción (los productos que
 
 Al cargar en un silo, la lista de tipos de llenado solo muestra los productos que realmente hay en existencias.
 
-Changelog 1.0.0.3:
-- Descripción en los 27 idiomas del juego; título Farm Inventory Plus.]]></es>
+Changelog 1.0.0.4:
+- Corrección de errores.]]></es>
         <ea><![CDATA[Descripción: agrega al menú de precios una pestaña "Inventory" que muestra los productos almacenados por tu granja, agrupados por dónde se guardan, junto a la información de mercado habitual.
 Teclas: ninguna propia. Abre el menú de precios y elige la pestaña INVENTORY. HIDE (quita una ubicación de la lista) y SHOW HIDDEN (la recupera) son botones de la barra de botones del menú, en las teclas de menú libres que se muestran (teclado y control).
 GitHub: https://github.com/DTM-Mods/FS25_FarmInventory
@@ -66,8 +70,8 @@ Cada silo (ampliaciones incluidas), silo búnker, producción (los productos que
 
 Al cargar en un silo, la lista de tipos de llenado solo muestra los productos que realmente hay en existencia.
 
-Changelog 1.0.0.3:
-- Descripción en los 27 idiomas del juego; título Farm Inventory Plus.]]></ea>
+Changelog 1.0.0.4:
+- Corrección de errores.]]></ea>
         <it><![CDATA[Descrizione: aggiunge al menu dei prezzi una scheda "Inventory" che elenca le merci immagazzinate dalla tua fattoria, raggruppate per luogo, accanto alle solite informazioni di mercato.
 Tasti: nessuno proprio. Apri il menu dei prezzi e scegli la scheda INVENTORY. HIDE (toglie un luogo dalla lista) e SHOW HIDDEN (lo riporta) sono pulsanti nella barra dei pulsanti del menu, sui tasti menu liberi mostrati lì (tastiera e controller).
 GitHub: https://github.com/DTM-Mods/FS25_FarmInventory
@@ -76,8 +80,8 @@ Ogni silo (estensioni incluse), silo a trincea, produzione (le merci che produce
 
 Quando carichi da un silo, l'elenco dei tipi di riempimento mostra solo le merci realmente disponibili.
 
-Changelog 1.0.0.3:
-- Descrizione in tutte le 27 lingue del gioco; titolo Farm Inventory Plus.]]></it>
+Changelog 1.0.0.4:
+- Correzioni di bug.]]></it>
         <nl><![CDATA[Beschrijving: voegt aan het prijzenmenu een tabblad "Inventory" toe dat de goederen toont die je boerderij heeft opgeslagen, gegroepeerd per opslagplaats, naast de gewone marktinformatie.
 Sneltoetsen: geen eigen. Open het prijzenmenu en kies het tabblad INVENTORY. HIDE (haalt een locatie uit de lijst) en SHOW HIDDEN (haalt hem terug) zijn knoppen in de knoppenbalk van het menu, op de vrije menutoetsen die daar staan (toetsenbord en controller).
 GitHub: https://github.com/DTM-Mods/FS25_FarmInventory
@@ -86,8 +90,8 @@ Elke silo (silo-uitbreidingen inbegrepen), sleufsilo, productie (de goederen die
 
 Bij het laden aan een silo toont de lijst met vultypes alleen goederen die echt op voorraad zijn.
 
-Changelog 1.0.0.3:
-- Beschrijving in alle 27 talen van het spel; titel Farm Inventory Plus.]]></nl>
+Changelog 1.0.0.4:
+- Bugfixes.]]></nl>
         <pl><![CDATA[Opis: dodaje do menu cen zakładkę "Inventory", która pokazuje towary przechowywane przez twoje gospodarstwo, pogrupowane według miejsca, obok zwykłych informacji rynkowych.
 Klawisze: brak własnych. Otwórz menu cen i wybierz zakładkę INVENTORY. HIDE (usuwa miejsce z listy) i SHOW HIDDEN (przywraca je) to przyciski na pasku przycisków menu, na wolnych klawiszach menu tam pokazanych (klawiatura i kontroler).
 GitHub: https://github.com/DTM-Mods/FS25_FarmInventory
@@ -96,8 +100,8 @@ Każdy silos (z rozszerzeniami), silos przejazdowy, produkcja (towary, które wy
 
 Podczas załadunku przy silosie lista typów napełniania pokazuje tylko towary, które faktycznie są na stanie.
 
-Changelog 1.0.0.3:
-- Opis we wszystkich 27 językach gry; tytuł Farm Inventory Plus.]]></pl>
+Changelog 1.0.0.4:
+- Poprawki błędów.]]></pl>
         <cz><![CDATA[Popis: přidá do nabídky cen záložku "Inventory", která ukazuje zboží uskladněné tvou farmou, seskupené podle místa uložení, vedle běžných tržních informací.
 Klávesy: žádné vlastní. Otevři nabídku cen a vyber záložku INVENTORY. HIDE (odebere místo ze seznamu) a SHOW HIDDEN (vrátí ho) jsou tlačítka v liště tlačítek nabídky, na volných klávesách nabídky, které jsou tam zobrazené (klávesnice a ovladač).
 GitHub: https://github.com/DTM-Mods/FS25_FarmInventory
@@ -106,8 +110,8 @@ Každé silo (včetně rozšíření), žlabové silo, výroba (zboží, které 
 
 Při nakládání u sila seznam druhů náplně ukazuje jen zboží, které je opravdu na skladě.
 
-Changelog 1.0.0.3:
-- Popis ve všech 27 jazycích hry; název Farm Inventory Plus.]]></cz>
+Changelog 1.0.0.4:
+- Opravy chyb.]]></cz>
         <br><![CDATA[Descrição: adiciona ao menu de preços uma aba "Inventory" que lista os produtos armazenados pela sua fazenda, agrupados por local, ao lado das informações de mercado de sempre.
 Teclas: nenhuma própria. Abra o menu de preços e escolha a aba INVENTORY. HIDE (tira um local da lista) e SHOW HIDDEN (traz de volta) são botões na barra de botões do menu, nas teclas de menu livres mostradas ali (teclado e controle).
 GitHub: https://github.com/DTM-Mods/FS25_FarmInventory
@@ -116,8 +120,8 @@ Cada silo (extensões incluídas), silo trincheira, produção (os produtos que 
 
 Ao carregar em um silo, a lista de tipos de carga mostra só os produtos que realmente estão em estoque.
 
-Changelog 1.0.0.3:
-- Descrição nos 27 idiomas do jogo; título Farm Inventory Plus.]]></br>
+Changelog 1.0.0.4:
+- Correções de erros.]]></br>
         <pt><![CDATA[Descrição: adiciona ao menu de preços um separador "Inventory" que lista os produtos armazenados pela sua quinta, agrupados por local, ao lado da informação de mercado habitual.
 Teclas: nenhuma própria. Abra o menu de preços e escolha o separador INVENTORY. HIDE (retira um local da lista) e SHOW HIDDEN (volta a mostrá-lo) são botões na barra de botões do menu, nas teclas de menu livres aí mostradas (teclado e comando).
 GitHub: https://github.com/DTM-Mods/FS25_FarmInventory
@@ -126,8 +130,8 @@ Cada silo (extensões incluídas), silo de trincheira, produção (os produtos q
 
 Ao carregar num silo, a lista de tipos de enchimento mostra apenas os produtos realmente em stock.
 
-Changelog 1.0.0.3:
-- Descrição nos 27 idiomas do jogo; título Farm Inventory Plus.]]></pt>
+Changelog 1.0.0.4:
+- Correções de erros.]]></pt>
         <ru><![CDATA[Описание: добавляет в меню цен вкладку "Inventory" с товарами, которые хранятся на вашей ферме, сгруппированными по месту хранения, рядом с обычной рыночной информацией.
 Клавиши: своих нет. Откройте меню цен и выберите вкладку INVENTORY. HIDE (убирает место из списка) и SHOW HIDDEN (возвращает его) — кнопки на панели кнопок меню, на свободных клавишах меню, показанных там (клавиатура и геймпад).
 GitHub: https://github.com/DTM-Mods/FS25_FarmInventory
@@ -136,8 +140,8 @@ GitHub: https://github.com/DTM-Mods/FS25_FarmInventory
 
 При загрузке у силоса список типов груза показывает только товары, которые действительно есть в наличии.
 
-Changelog 1.0.0.3:
-- Описание на всех 27 языках игры; название Farm Inventory Plus.]]></ru>
+Changelog 1.0.0.4:
+- Исправления ошибок.]]></ru>
         <uk><![CDATA[Опис: додає в меню цін вкладку "Inventory" з товарами, що зберігаються на вашій фермі, згрупованими за місцем зберігання, поруч зі звичайною ринковою інформацією.
 Клавіші: власних немає. Відкрийте меню цін і виберіть вкладку INVENTORY. HIDE (прибирає місце зі списку) і SHOW HIDDEN (повертає його) — кнопки на панелі кнопок меню, на вільних клавішах меню, показаних там (клавіатура й геймпад).
 GitHub: https://github.com/DTM-Mods/FS25_FarmInventory
@@ -146,8 +150,8 @@ GitHub: https://github.com/DTM-Mods/FS25_FarmInventory
 
 Під час завантаження біля силосу список типів вантажу показує лише товари, які справді є в наявності.
 
-Changelog 1.0.0.3:
-- Опис усіма 27 мовами гри; назва Farm Inventory Plus.]]></uk>
+Changelog 1.0.0.4:
+- Виправлення помилок.]]></uk>
         <tr><![CDATA[Açıklama: Fiyatlar menüsüne, çiftliğinizde depolanan ürünleri saklandıkları yere göre gruplayarak listeleyen bir "Inventory" sekmesi ekler; olağan piyasa bilgileri yanında durur.
 Kısayollar: kendine ait yok. Fiyatlar menüsünü açın ve INVENTORY sekmesini seçin. HIDE (bir konumu listeden çıkarır) ve SHOW HIDDEN (geri getirir) menünün düğme çubuğundaki düğmelerdir; orada gösterilen boş menü tuşlarındadır (klavye ve kontrolcü).
 GitHub: https://github.com/DTM-Mods/FS25_FarmInventory
@@ -156,8 +160,8 @@ Her silo (silo uzantıları dahil), bunker silo, üretim (ürettiği mallar) ve 
 
 Bir siloda dolum yaparken dolum türü listesi yalnızca gerçekten stokta olan ürünleri gösterir.
 
-Changelog 1.0.0.3:
-- Açıklama oyunun 27 dilinin hepsinde; başlık Farm Inventory Plus.]]></tr>
+Changelog 1.0.0.4:
+- Hata düzeltmeleri.]]></tr>
         <hu><![CDATA[Leírás: az árak menübe egy "Inventory" fület ad, amely a gazdaságod által tárolt árukat mutatja tárolási hely szerint csoportosítva, a szokásos piaci információk mellett.
 Billentyűk: saját nincs. Nyisd meg az árak menüt, és válaszd az INVENTORY fület. A HIDE (kiveszi a helyet a listából) és a SHOW HIDDEN (visszahozza) gombok a menü gombsorában vannak, az ott látható szabad menügombokon (billentyűzet és kontroller).
 GitHub: https://github.com/DTM-Mods/FS25_FarmInventory
@@ -166,8 +170,8 @@ Minden siló (bővítésekkel együtt), árokszilázs-siló, üzem (az általa g
 
 Silónál töltéskor a töltettípus-lista csak a ténylegesen készleten lévő árukat mutatja.
 
-Changelog 1.0.0.3:
-- Leírás a játék mind a 27 nyelvén; cím: Farm Inventory Plus.]]></hu>
+Changelog 1.0.0.4:
+- Hibajavítások.]]></hu>
         <ro><![CDATA[Descriere: adaugă în meniul de prețuri o filă "Inventory" care listează mărfurile depozitate de ferma ta, grupate după locul de păstrare, lângă informațiile de piață obișnuite.
 Taste: niciuna proprie. Deschide meniul de prețuri și alege fila INVENTORY. HIDE (scoate un loc din listă) și SHOW HIDDEN (îl aduce înapoi) sunt butoane în bara de butoane a meniului, pe tastele de meniu libere afișate acolo (tastatură și controler).
 GitHub: https://github.com/DTM-Mods/FS25_FarmInventory
@@ -176,8 +180,8 @@ Fiecare siloz (inclusiv extensiile), siloz tip buncăr, producție (mărfurile p
 
 Când încarci la un siloz, lista tipurilor de umplere arată doar mărfurile aflate efectiv în stoc.
 
-Changelog 1.0.0.3:
-- Descriere în toate cele 27 de limbi ale jocului; titlu Farm Inventory Plus.]]></ro>
+Changelog 1.0.0.4:
+- Remedieri de erori.]]></ro>
         <sv><![CDATA[Beskrivning: lägger till en flik "Inventory" i prismenyn som visar varorna din gård har lagrat, grupperade efter var de förvaras, bredvid den vanliga marknadsinformationen.
 Snabbtangenter: inga egna. Öppna prismenyn och välj fliken INVENTORY. HIDE (tar bort en plats från listan) och SHOW HIDDEN (tar tillbaka den) är knappar i menyns knappfält, på de lediga menytangenter som visas där (tangentbord och handkontroll).
 GitHub: https://github.com/DTM-Mods/FS25_FarmInventory
@@ -186,8 +190,8 @@ Varje silo (siloutbyggnader inräknade), plansilo, produktion (varorna den tillv
 
 När du lastar vid en silo visar listan med fyllnadstyper bara varor som faktiskt finns i lager.
 
-Changelog 1.0.0.3:
-- Beskrivning på alla spelets 27 språk; titel Farm Inventory Plus.]]></sv>
+Changelog 1.0.0.4:
+- Buggfixar.]]></sv>
         <da><![CDATA[Beskrivelse: tilføjer en fane "Inventory" til prismenuen, der viser de varer, din gård har på lager, grupperet efter hvor de opbevares, ved siden af den sædvanlige markedsinformation.
 Genvejstaster: ingen egne. Åbn prismenuen og vælg fanen INVENTORY. HIDE (fjerner et sted fra listen) og SHOW HIDDEN (henter det tilbage) er knapper i menuens knaplinje, på de ledige menutaster, der vises der (tastatur og controller).
 GitHub: https://github.com/DTM-Mods/FS25_FarmInventory
@@ -196,8 +200,8 @@ Hver silo (siloudvidelser medregnet), plansilo, produktion (de varer den laver) 
 
 Når du læsser ved en silo, viser listen over fyldtyper kun varer, der faktisk er på lager.
 
-Changelog 1.0.0.3:
-- Beskrivelse på alle spillets 27 sprog; titel Farm Inventory Plus.]]></da>
+Changelog 1.0.0.4:
+- Fejlrettelser.]]></da>
         <no><![CDATA[Beskrivelse: legger til en fane "Inventory" i prismenyen som viser varene gården din har lagret, gruppert etter hvor de oppbevares, ved siden av den vanlige markedsinformasjonen.
 Hurtigtaster: ingen egne. Åpne prismenyen og velg fanen INVENTORY. HIDE (tar et sted ut av listen) og SHOW HIDDEN (henter det tilbake) er knapper i menyens knapperad, på de ledige menytastene som vises der (tastatur og kontroller).
 GitHub: https://github.com/DTM-Mods/FS25_FarmInventory
@@ -206,8 +210,8 @@ Hver silo (siloutvidelser inkludert), plansilo, produksjon (varene den lager) og
 
 Når du laster ved en silo, viser listen over fylltyper bare varer som faktisk er på lager.
 
-Changelog 1.0.0.3:
-- Beskrivelse på alle spillets 27 språk; tittel Farm Inventory Plus.]]></no>
+Changelog 1.0.0.4:
+- Feilrettinger.]]></no>
         <fi><![CDATA[Kuvaus: lisää hintavalikkoon "Inventory"-välilehden, joka näyttää tilasi varastoimat tuotteet säilytyspaikan mukaan ryhmiteltyinä tavallisten markkinatietojen rinnalla.
 Pikanäppäimet: ei omia. Avaa hintavalikko ja valitse INVENTORY-välilehti. HIDE (poistaa paikan luettelosta) ja SHOW HIDDEN (tuo sen takaisin) ovat valikon painikepalkin painikkeita, siellä näkyvillä vapailla valikkonäppäimillä (näppäimistö ja ohjain).
 GitHub: https://github.com/DTM-Mods/FS25_FarmInventory
@@ -216,8 +220,8 @@ Jokainen siilo (laajennukset mukaan lukien), laakasiilo, tuotantolaitos (sen val
 
 Kun lastaat siilolta, täyttötyyppien luettelo näyttää vain tuotteet, joita todella on varastossa.
 
-Changelog 1.0.0.3:
-- Kuvaus kaikilla pelin 27 kielellä; nimi Farm Inventory Plus.]]></fi>
+Changelog 1.0.0.4:
+- Virhekorjauksia.]]></fi>
         <jp><![CDATA[説明：価格メニューに「Inventory」タブを追加し、農場が保管している品物を保管場所ごとにまとめて、いつもの市場情報と一緒に表示します。
 キー操作：専用キーはありません。価格メニューを開き、INVENTORY タブを選びます。HIDE（場所を一覧から外す）と SHOW HIDDEN（元に戻す）は、メニュー下部のボタンバーにあるボタンで、そこに表示される空いているメニューキーに割り当てられます（キーボードとコントローラー）。
 GitHub: https://github.com/DTM-Mods/FS25_FarmInventory
@@ -226,8 +230,8 @@ GitHub: https://github.com/DTM-Mods/FS25_FarmInventory
 
 サイロで積み込むとき、充填タイプの一覧には実際に在庫がある品物だけが表示されます。
 
-Changelog 1.0.0.3:
-- ゲームの全27言語で説明を掲載。タイトルは Farm Inventory Plus。]]></jp>
+Changelog 1.0.0.4:
+- 不具合の修正。]]></jp>
         <kr><![CDATA[설명: 가격 메뉴에 "Inventory" 탭을 추가하여 농장에 저장된 물품을 보관 장소별로 묶어 평소의 시장 정보와 함께 보여 줍니다.
 단축키: 자체 키는 없습니다. 가격 메뉴를 열고 INVENTORY 탭을 선택하세요. HIDE(장소를 목록에서 빼기)와 SHOW HIDDEN(다시 보이기)은 메뉴 버튼 바에 있는 버튼이며, 그곳에 표시되는 비어 있는 메뉴 키를 사용합니다(키보드와 컨트롤러).
 GitHub: https://github.com/DTM-Mods/FS25_FarmInventory
@@ -236,8 +240,8 @@ GitHub: https://github.com/DTM-Mods/FS25_FarmInventory
 
 사일로에서 적재할 때 적재 유형 목록에는 실제로 재고가 있는 물품만 표시됩니다.
 
-Changelog 1.0.0.3:
-- 게임의 27개 언어 모두로 설명 제공, 제목 Farm Inventory Plus.]]></kr>
+Changelog 1.0.0.4:
+- 버그 수정.]]></kr>
         <ct><![CDATA[說明：在價格選單新增「Inventory」分頁，依存放地點分組列出你的農場儲存的貨物，並保留一般的市場資訊。
 快速鍵：沒有專用按鍵。開啟價格選單並選擇 INVENTORY 分頁。HIDE（將地點從清單移除）和 SHOW HIDDEN（再次顯示）是選單按鈕列上的按鈕，使用那裡顯示的空閒選單按鍵（鍵盤和控制器）。
 GitHub: https://github.com/DTM-Mods/FS25_FarmInventory
@@ -246,8 +250,8 @@ GitHub: https://github.com/DTM-Mods/FS25_FarmInventory
 
 在筒倉裝載時，填充類型清單只會顯示確實有庫存的貨物。
 
-Changelog 1.0.0.3:
-- 說明支援遊戲全部 27 種語言；標題 Farm Inventory Plus。]]></ct>
+Changelog 1.0.0.4:
+- 錯誤修正。]]></ct>
         <cs><![CDATA[说明：在价格菜单中新增“Inventory”标签页，按存放地点分组列出你的农场储存的货物，并保留常规的市场信息。
 快捷键：没有专用按键。打开价格菜单并选择 INVENTORY 标签页。HIDE（将地点从列表移除）和 SHOW HIDDEN（重新显示）是菜单按钮栏上的按钮，使用那里显示的空闲菜单按键（键盘和手柄）。
 GitHub: https://github.com/DTM-Mods/FS25_FarmInventory
@@ -256,8 +260,8 @@ GitHub: https://github.com/DTM-Mods/FS25_FarmInventory
 
 在筒仓装载时，填充类型列表只显示确实有库存的货物。
 
-Changelog 1.0.0.3:
-- 说明支持游戏全部 27 种语言；标题 Farm Inventory Plus。]]></cs>
+Changelog 1.0.0.4:
+- 错误修复。]]></cs>
         <id><![CDATA[Deskripsi: menambahkan tab "Inventory" ke menu harga yang menampilkan barang yang disimpan peternakan Anda, dikelompokkan menurut tempat penyimpanannya, di samping informasi pasar yang biasa.
 Tombol pintas: tidak ada tombol sendiri. Buka menu harga dan pilih tab INVENTORY. HIDE (mengeluarkan lokasi dari daftar) dan SHOW HIDDEN (mengembalikannya) adalah tombol di bilah tombol menu, pada tombol menu kosong yang ditampilkan di sana (keyboard dan kontroler).
 GitHub: https://github.com/DTM-Mods/FS25_FarmInventory
@@ -266,8 +270,8 @@ Setiap silo (termasuk perluasan silo), silo bunker, produksi (barang yang dibuat
 
 Saat memuat di silo, daftar jenis isian hanya menampilkan barang yang benar-benar tersedia.
 
-Changelog 1.0.0.3:
-- Deskripsi dalam ke-27 bahasa game; judul Farm Inventory Plus.]]></id>
+Changelog 1.0.0.4:
+- Perbaikan bug.]]></id>
         <vi><![CDATA[Mô tả: thêm thẻ "Inventory" vào menu giá, liệt kê hàng hóa mà trang trại của bạn đang lưu trữ, nhóm theo nơi cất giữ, bên cạnh thông tin thị trường thông thường.
 Phím tắt: không có phím riêng. Mở menu giá và chọn thẻ INVENTORY. HIDE (bỏ một vị trí khỏi danh sách) và SHOW HIDDEN (đưa nó trở lại) là các nút trên thanh nút của menu, dùng các phím menu còn trống hiển thị ở đó (bàn phím và tay cầm).
 GitHub: https://github.com/DTM-Mods/FS25_FarmInventory
@@ -276,8 +280,8 @@ Mỗi silo (kể cả phần mở rộng silo), silo hầm, cơ sở sản xuấ
 
 Khi nạp hàng tại silo, danh sách loại hàng chỉ hiện những hàng thực sự còn trong kho.
 
-Changelog 1.0.0.3:
-- Mô tả bằng cả 27 ngôn ngữ của trò chơi; tiêu đề Farm Inventory Plus.]]></vi>
+Changelog 1.0.0.4:
+- Sửa lỗi.]]></vi>
     </description>
 
     <multiplayer supported="true" />
